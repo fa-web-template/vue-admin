@@ -13,14 +13,14 @@
                  :disabled="btnDisabled"
                  type="primary"
                  @click="submit">
-        \\{{
+        \{{
         submitBtnText
         }}
       </el-button>
       <el-button v-if="needResetBtn"
                  :size="btnSize || respBtnSize"
                  @click="resetForm">
-        \\{{
+        \{{
         resetBtnText
         }}
       </el-button>

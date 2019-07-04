@@ -81,7 +81,7 @@
           <i :class="['icon',item.meta.slot.value]" />
         </template>
         <template v-else>
-          \\{{ item.meta.slot.value }}
+          \{{ item.meta.slot.value }}
         </template>
       </template>
     </el-input>
