@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-const __module = 'overview'
 export default {
     components: {},
     data() {
