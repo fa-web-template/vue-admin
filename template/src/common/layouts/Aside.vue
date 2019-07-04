@@ -2,7 +2,7 @@
   <div class="app-aside">
     <div class="title-container">
       <h1 class="title">
-        <router-link to="/index">{{ title }}</router-link>
+        <router-link to="/index">\{{ title }}</router-link>
       </h1>
     </div>
     <el-menu :default-active="activeIndex"
@@ -15,7 +15,7 @@
           <template slot="title">
             <i v-if="item.icon"
                :class="item.icon" />
-            <span>{{ item.title }}</span>
+            <span>\{{ item.title }}</span>
           </template>
           <el-menu-item v-for="subItem of item.items"
                         :key="subItem.index"
@@ -23,7 +23,7 @@
                         class="sub-item-item">
             <i v-if="subItem.icon"
                :class="subItem.icon" />
-            <span>{{ subItem.title }}</span>
+            <span>\{{ subItem.title }}</span>
           </el-menu-item>
         </el-submenu>
         <el-menu-item v-else
@@ -31,7 +31,7 @@
                       :index="item.index">
           <i v-if="item.icon"
              :class="item.icon" />
-          <span>{{ item.title }}</span>
+          <span>\{{ item.title }}</span>
         </el-menu-item>
       </template>
     </el-menu>
