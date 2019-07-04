@@ -14,7 +14,7 @@
                      :render-header="column.isRender ? renderHeader : null"
                      align="center">
       <template slot-scope="scope">
-        <p>\{{ scope.row[column.prop] }}</p>
+        <p>{{ scope.row[column.prop] }}</p>
       </template>
     </el-table-column>
     <slot name="append" />

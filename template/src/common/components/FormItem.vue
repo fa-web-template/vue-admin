@@ -47,20 +47,20 @@
       </el-tabs>
     </template>
     <template v-else-if="item.isTitle">
-      <el-divider>\{{ item.title }}</el-divider>
+      <el-divider>{{ item.title }}</el-divider>
     </template>
     <template v-else>
       <!-- 一行多个 -->
       <template v-if="item.items">
         <label v-if="item.label"
-               class="el-form-item__label">\{{ item.label }}</label>
+               class="el-form-item__label">{{ item.label }}</label>
         <el-form-item v-for="(subItem) in item.items"
                       :key="getKey(subItem)"
                       :label="subItem.label"
                       :prop="spliceKey +'.'+ subItem.key"
                       :class="getClassName(subItem)"
                       :style="getStyle(subItem)">
-          <span v-show="false">\{{ setModel(spliceKey +'.'+ subItem.key) }}</span>
+          <span v-show="false">{{ setModel(spliceKey +'.'+ subItem.key) }}</span>
           <form-control :item="subItem"
                         :model.sync="model[subItem.key]"
                         @submit="submit" />
@@ -71,7 +71,7 @@
         <el-form-item :label="item.label"
                       :prop="spliceKey"
                       :class="{'hidden-label':_.get(item,'meta.hiddenLabel')}">
-          <span v-show="false">\{{ setModel(spliceKey) }}</span>
+          <span v-show="false">{{ setModel(spliceKey) }}</span>
           <form-control :item="item"
                         :model.sync="model[item.key]"
                         @submit="submit" />

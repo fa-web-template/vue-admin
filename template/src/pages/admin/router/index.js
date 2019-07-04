@@ -57,7 +57,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter(routerConfig)
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async(to, from, next) => {
     if (to.meta.title) {
         document.title = to.meta.title
     }

@@ -7,7 +7,7 @@
         "title": {
             "type": "input",
             "label": "项目标题：",
-            "required": true
+            "default": "后台管理"
         },
         "desc": {
             "type": "input",

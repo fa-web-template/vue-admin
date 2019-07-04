@@ -15,7 +15,7 @@
                    class="avatar-container right-menu-item"
                    trigger="click">
         <p class="avatar-wrapper">
-          \{{ username }}
+          {{ username }}
           <i class="el-icon-arrow-down el-icon--right" />
         </p>
         <el-dropdown-menu slot="dropdown">
@@ -23,11 +23,11 @@
                             :key="index">
             <router-link v-if="item.path"
                          :to="item.path">
-              \{{ item.label }}
+              {{ item.label }}
             </router-link>
             <span v-else-if="item.callback"
                   @click="item.callback">
-              \{{ item.label }}
+              {{ item.label }}
             </span>
           </el-dropdown-item>
         </el-dropdown-menu>
