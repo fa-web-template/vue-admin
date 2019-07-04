@@ -11,7 +11,7 @@
 <script>
 const __module = '{{ name }}'
 import Search from '@/common/components/Search'
-import sTable from './components/{{#upperFirst}} {{ name }} {{/upperFirst}}Table'
+import sTable from './components/{{upperFirst name }}Table'
 import { mapActions } from 'vuex'
 import syncChange from '@/common/mixins/syncChange'
 export default {
