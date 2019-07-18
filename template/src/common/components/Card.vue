@@ -3,7 +3,7 @@
     <div v-if="needHeader"
          slot="header"
          class="card-header">
-      <h2 class="card-title">\{{ title }}</h2>
+      <h2 class="card-title">{{ title }}</h2>
       <slot name="toolbar" />
     </div>
     <slot />

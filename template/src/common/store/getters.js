@@ -1,3 +1,4 @@
+import isArray from 'lodash/isArray'
 export default {
     requestData() {
         return origin => {
@@ -9,9 +10,15 @@ export default {
             if (search.length) {
                 data.where = search
                 search.forEach((item, index) => {
-                    if (item[item.length - 1].outside) {
-                        data[item[0]] = item[2]
-                        data.where.splice(index, 1)
+                    if (isArray(item)) {
+                        const last = item[item.length - 1]
+                        if (last.outside) {
+                            data[item[0]] = item[2]
+                            data.where.splice(index, 1)
+                        }
+                        if (last.realKey) {
+                            item[0] = last.realKey
+                        }
                     }
                 })
             }

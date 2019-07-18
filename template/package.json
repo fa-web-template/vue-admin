@@ -1,9 +1,9 @@
 {
-    "name": "{{ name }}",
-    "title": "{{ title }}",
-    "description": "{{ desc }}",
+    "name": "vue-admin-template",
+    "title": "Vue后台管理模板",
+    "description": "一个Vue后台管理系统",
     "version": "0.0.1",
-    "author": "{{ author }}",
+    "author": "4Ark<gd4ark@gmail.com>",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
+        "fuse.js": "3.4.4",
         "echarts": "^4.2.1",
         "element-ui": "^2.8.2",
         "file-saver": "^2.0.1",
@@ -32,6 +33,8 @@
         "v-charts": "^1.19.0",
         "vue": "^2.5.17",
         "vue-codemirror-lite": "^1.0.4",
+        "normalize.css": "7.0.0",
+        "nprogress": "0.2.0",
         "vue-count-to": "^1.0.13",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1",

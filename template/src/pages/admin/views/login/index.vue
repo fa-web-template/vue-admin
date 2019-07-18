@@ -3,7 +3,7 @@
     <div :class="['login-container',device]">
       <div v-if="!isMobile"
            class="login-text">
-        <h1 class="title">\{{ $config.app_title }} - 后台管理</h1>
+        <h1 class="title">{{ title }}</h1>
         <p class="message">
           <span>不忘初心，方得始终</span>
           <span>那些成功的人，往往是有着坚定目标，并持续努力的人</span>
@@ -13,12 +13,12 @@
         <el-card>
           <div slot="header"
                class="card-header">
-            <h2 class="card-title">\{{ loginTitle }}</h2>
+            <h2 class="card-title">{{ loginTitle }}</h2>
           </div>
           <base-form :form-item="$v_data[module].login.item"
                      :get-form-data="$v_data[module].login.data"
                      :show-label="false"
-                     :btn-size="btnSize"
+                     btn-size="mini"
                      :btn-style="{width:'100%'}"
                      :need-reset-btn="false"
                      submit-btn-text="登录"
@@ -33,20 +33,19 @@
 const __module = 'auth_user'
 import BaseForm from '@/common/components/BaseForm'
 import vFooter from '@/common/layouts/Footer'
+import getRedirect from '@/common/mixins/getRedirect'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     components: {
         BaseForm,
         vFooter
     },
+    mixins: [getRedirect],
     data: () => ({
         module: __module
     }),
     computed: {
-        ...mapGetters(['device', 'isMobile']),
-        btnSize() {
-            return this.isMobile ? 'small' : 'small'
-        },
+        ...mapGetters(['device', 'isMobile', 'title']),
         loginTitle() {
             return this.isMobile
                 ? this.$config.app_title + '-' + this.$route.meta.title
@@ -56,11 +55,15 @@ export default {
     methods: {
         ...mapActions(__module, ['login', 'getProfile']),
         async submit(data) {
-            await this.login({
-                data
+            // await this.login({
+            //     data
+            // })
+            // await this.getProfile()
+            this.$root.$children[0].initNavList()
+            this.$router.push({
+                path: this.redirect || '/index',
+                query: this.otherQuery
             })
-            await this.getProfile()
-            this.$router.push('/index')
         }
     }
 }
@@ -114,5 +117,21 @@ export default {
 }
 .card-header {
     justify-content: center;
+}
+</style>
+<style lang="scss">
+.login-container {
+    .el-card__body {
+        padding-top: 15px;
+    }
+    .el-form-item__content {
+        line-height: 28px;
+    }
+    .el-form-item {
+        margin-bottom: 7px;
+    }
+    .el-button--mini {
+        padding: 7px 8px;
+    }
 }
 </style>

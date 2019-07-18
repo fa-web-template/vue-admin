@@ -67,6 +67,19 @@
     line-height: 40px;
 }
 
+.el-radio,
+.el-radio-button--mini {
+    line-height: 40px;
+}
+
+.el-radio-button:focus:not(.is-focus):not(:active):not(.is-disabled) {
+    box-shadow: none;
+}
+
+.el-radio-group {
+    text-align: left;
+}
+
 .el-form--inline .el-form-item {
     margin: $form-item-margin;
 }
@@ -99,6 +112,18 @@
     line-height: 0.3;
 }
 
+.el-range-editor {
+    display: flex !important;
+}
+
+.el-time-panel {
+    width: 150px;
+}
+
+.el-form--inline .el-form-item__content {
+    vertical-align: middle;
+}
+
 .el-input-number,
 .el-date-editor.el-input,
 .el-date-editor.el-input__inner {
@@ -113,8 +138,23 @@
     padding: $input-suffix-padding;
 }
 
+.el-range-editor--mini.el-input__inner,
 .el-input--mini .el-input__inner {
-    height: 28px !important;
+    height: 24px !important;
+}
+
+.el-range-editor--mini .el-range-separator {
+    line-height: 15px;
+}
+
+.el-cascader__search-input {
+    height: 0;
+}
+
+.el-select.el-select--mini {
+    .el-input--mini .el-input__inner {
+        height: 24px !important;
+    }
 }
 
 .el-date-editor {
@@ -175,4 +215,20 @@
 
 .el-row + .el-row {
     margin-top: 10px;
+}
+
+.full-tab-form {
+    flex: 1;
+    @include flex-column;
+    .el-form-item-tab {
+        flex: 1;
+        overflow: hidden;
+        .el-tabs {
+            @include full-tab;
+        }
+    }
+}
+
+.full-tab {
+    @include full-tab;
 }

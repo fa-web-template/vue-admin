@@ -3,13 +3,13 @@
     <div class="wscn-http404">
       <div class="pic-404">
         <img class="pic-404__parent"
-             src="@/static/images/404_images/404.svg"
+             src="@/static/images/401_images/401.svg"
              alt="404">
       </div>
       <div class="bullshit">
-        <div class="bullshit__oops">页面找不到！</div>
+        <div class="bullshit__oops">您没有权限去该页面</div>
         <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">请检查您输入的URL是否正确，或单击下面的按钮返回主页。</div>
+        <div class="bullshit__info">如有疑问请联系网站管理员，或单击下面的按钮返回主页。</div>
         <a class="bullshit__return bullshit__return-back"
            @click="toBack">
           上一页
@@ -24,16 +24,21 @@
 </template>
 
 <script>
+import getRedirect from '@/common/mixins/getRedirect'
 export default {
     name: 'Page404',
+    mixins: [getRedirect],
     computed: {
         message() {
-            return '网站管理员说您无法进入此页面...'
+            return '您未被授权查看该页 您不具备查看该目录或页面的权限...'
         }
     },
     methods: {
         toBack() {
-            this.$router.back()
+            this.$router.push({
+                path: this.redirect || '/',
+                query: this.otherQuery
+            })
         }
     }
 }

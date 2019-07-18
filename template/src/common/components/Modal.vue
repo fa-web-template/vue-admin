@@ -11,8 +11,9 @@
                    :type="btnType"
                    :icon="btnIcon"
                    :style="btnStyle"
+                   :disabled="disabled"
                    class="btn">
-          \{{ openBtnText }}
+          {{ openBtnText }}
         </el-button>
       </slot>
     </div>
@@ -30,12 +31,12 @@
         <slot name="footer">
           <slot name="footer-prepend"></slot>
           <el-button :size="respBtnSize"
-                     @click="hidden">\{{ cancelBtnText }}</el-button>
+                     @click="hidden">{{ cancelBtnText }}</el-button>
           <slot name="footer-middle"></slot>
           <el-button :disabled="btnDisabled"
                      :size="respBtnSize"
                      type="primary"
-                     @click="submit">\{{ submitBtnText }}</el-button>
+                     @click="submit">{{ submitBtnText }}</el-button>
           <slot name="footer-prepend"></slot>
         </slot>
       </span>
@@ -53,6 +54,10 @@ export default {
         title: {
             type: String,
             default: '弹窗'
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         },
         needDrag: {
             type: Boolean,
@@ -111,6 +116,7 @@ export default {
     methods: {
         visible() {
             if (!this.beforeOpen()) return
+            if (this.disabled) return
             this.dialogVisible = true
         },
         hidden() {

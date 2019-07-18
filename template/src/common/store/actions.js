@@ -12,18 +12,21 @@ export default {
         }
         return res
     },
-    async getOptions(ctx, module) {
-        const path = module + '?getOptions=1'
-        const res = await this._vm.$axios.get(`/${path}`)
-        ctx.commit(
-            `${module}/update`,
-            {
-                options: res
-            },
-            {
-                root: true
-            }
-        )
+    async getOptions(ctx, modules) {
+        const res = await this._vm.$axios.get(`/options`, {
+            models: modules
+        })
+        Object.keys(res).map(key => {
+            ctx.commit(
+                `${key}/update`,
+                {
+                    options: res[key]
+                },
+                {
+                    root: true
+                }
+            )
+        })
     },
     async add(ctx, { module, data }) {
         return await this._vm.$axios.post(`/${module}`, data)

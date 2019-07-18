@@ -8,6 +8,7 @@
          :btn-icon="btnIcon"
          :btn-style="btnStyle"
          :btn-disabled="btnDisabled"
+         :disabled="disabled"
          @submit="baseFormSubmit"
          @open="reset">
     <baseForm slot="body"

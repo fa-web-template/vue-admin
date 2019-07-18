@@ -15,15 +15,28 @@ export function fileListToObject(modulesFiles) {
     }, {})
 }
 
+const sortKey = (keys, sorts) => {
+    return keys.sort((a, b) => {
+        const aSort = sorts.indexOf(a)
+        const bSort = sorts.indexOf(b)
+        return aSort !== -1 ? aSort - bSort : -1
+    })
+}
+
 /**
  *
  *
  * @export
  * @param {*} modulesFiles
+ * @param {*} sorts = null
  * @returns {Array}
  */
-export function fileListToArray(modulesFiles) {
-    return modulesFiles.keys().map(modulePath => {
+export function fileListToArray(modulesFiles, sorts = null) {
+    let keys = modulesFiles.keys()
+    if (sorts) {
+        keys = sortKey(keys, sorts)
+    }
+    return keys.map(modulePath => {
         const value = modulesFiles(modulePath)
         return value.default[0]
     }, {})

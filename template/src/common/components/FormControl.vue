@@ -7,12 +7,32 @@
                :size="respFormControlSize"
                :filterable="_.get(item,'meta.filterable')"
                :placeholder="getPlaceholder('选择')"
-               :clearable="_.get(item,'meta.clearable',true)">
+               :clearable="_.get(item,'meta.clearable',true)"
+               @change="changeSelect">
       <el-option v-for="option in getOptions()"
                  :key="option.value"
                  :label="option.label"
                  :value="option.value" />
+      <template v-if="_.get(item,'meta.create_link')"
+                slot="empty">
+        <div class="create-select">
+          <span>该{{ item.label }}不存在</span>
+          <router-link :to="item.meta.create_link+'?redirect='+$route.path">点我创建</router-link>
+        </div>
+      </template>
     </el-select>
+    <!-- radio -->
+    <el-radio-group v-else-if="item.type === 'radio'"
+                    v-model="val"
+                    :size="respFormControlSize"
+                    @change="changeSelect">
+      <component :is="_.get(item,'meta.radioType','el-radio')"
+                 v-for="option in getOptions()"
+                 :key="option.value"
+                 :label="option.value">
+        {{ option.label }}
+      </component>
+    </el-radio-group>
     <!-- cascader -->
     <el-cascader v-else-if="item.type === 'cascader'"
                  v-model="val"
@@ -32,6 +52,18 @@
                     :clearable="true"
                     :placeholder="getPlaceholder('选择')"
                     :size="respFormControlSize" />
+    <!-- datetimerange -->
+    <el-date-picker v-else-if="item.type === 'datetimerange'"
+                    v-model="val"
+                    :type="_.get(item,'meta.type','daterange')"
+                    :value-format="_.get(item,'meta.format','yyyy-MM-dd HH:mm:ss')"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                    align="center"
+                    :size="respFormControlSize"
+                    @change="changeSelect">
+    </el-date-picker>
     <!-- sidebar -->
     <el-slider v-else-if="item.type === 'range'"
                v-model="val"
@@ -81,7 +113,7 @@
           <i :class="['icon',item.meta.slot.value]" />
         </template>
         <template v-else>
-          \{{ item.meta.slot.value }}
+          {{ item.meta.slot.value }}
         </template>
       </template>
     </el-input>
@@ -135,16 +167,19 @@ export default {
     },
     watch: {
         val(val) {
+            if (this._.isNull(val)) {
+                val = ''
+            }
             this.$emit('update:model', val)
         },
         model(val) {
             if (this.val !== val) {
-                this.val = val
+                this.setVal(val)
             }
         }
     },
     mounted() {
-        this.val = this.model
+        this.setVal(this.model)
         this.codemirrorOptions.placeholder = this.getPlaceholder()
         this.loaded = true
     },
@@ -152,6 +187,27 @@ export default {
         submit() {
             if (this._.get(this.item, 'meta.disabledEvent')) return
             this.$emit('submit')
+        },
+        setVal(val) {
+            if (val === '') {
+                this.val = val
+                return
+            }
+            const type = this._.get(this.item, 'meta.type')
+            switch (type) {
+                case 'number':
+                    this.val = Number(val)
+                    break
+                default:
+                    this.val = val
+                    break
+            }
+        },
+        changeSelect() {
+            if (!this._.get(this.item, 'meta.enableEvent', false)) return
+            setTimeout(() => {
+                this.$emit('submit')
+            }, 20)
         },
         getPlaceholder(type = '输入') {
             return (
@@ -190,6 +246,14 @@ export default {
     border-radius: 4px;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     line-height: 17px;
+}
+.create-select {
+    line-height: 2.5;
+    text-align: center;
+    a {
+        margin-left: 5px;
+        color: $gighlight-color;
+    }
 }
 </style>
 <style lang="scss">

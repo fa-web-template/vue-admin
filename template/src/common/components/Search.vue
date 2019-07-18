@@ -90,7 +90,6 @@ export default {
         },
         setSearchData(item) {
             const key = item.key
-            const isOutside = this._.get(item, 'meta.outside')
             let data = this.formData[key]
             if (data !== 0 && !data) return
             const operation = this._.get(item, 'meta.operation', 'like')
@@ -102,7 +101,7 @@ export default {
                 operation,
                 data,
                 {
-                    outside: isOutside
+                    ...this._.get(item, 'meta', {})
                 }
             ])
         },

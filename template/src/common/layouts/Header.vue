@@ -8,14 +8,14 @@
     </div>
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
+        <header-search class="right-menu-item hover-effect" />
         <screenfull class="right-menu-item hover-effect" />
       </template>
-
       <el-dropdown v-if="showAvatar"
                    class="avatar-container right-menu-item"
                    trigger="click">
         <p class="avatar-wrapper">
-          \{{ username }}
+          {{ username }}
           <i class="el-icon-arrow-down el-icon--right" />
         </p>
         <el-dropdown-menu slot="dropdown">
@@ -23,11 +23,11 @@
                             :key="index">
             <router-link v-if="item.path"
                          :to="item.path">
-              \{{ item.label }}
+              {{ item.label }}
             </router-link>
             <span v-else-if="item.callback"
                   @click="item.callback">
-              \{{ item.label }}
+              {{ item.label }}
             </span>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -36,16 +36,18 @@
   </div>
 </template>
 <script>
-import Hamburger from '@/common/components/Hamburger'
-import Screenfull from '@/common/components/Screenfull'
-import Breadcrumb from '@/common/components/Breadcrumb'
+import Hamburger from './components/Hamburger'
+import Screenfull from './components/Screenfull'
+import Breadcrumb from './components/Breadcrumb'
+import HeaderSearch from './components/HeaderSearch'
 import { success } from '@/common/utils/message'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     components: {
         Hamburger,
         Screenfull,
-        Breadcrumb
+        Breadcrumb,
+        HeaderSearch
     },
     props: {
         dropdownMenu: {
@@ -63,7 +65,11 @@ export default {
         this.innerDropdownMenu = [
             ...this.dropdownMenu,
             {
-                path: '/password',
+                path: '/me/profile',
+                label: '用户信息'
+            },
+            {
+                path: '/me/password',
                 label: '修改密码'
             },
             {

@@ -1,21 +1,18 @@
 import { mapActions } from 'vuex'
+const byOptionName = (id, module, isOptions) => {
+    const options = isOptions ? module : module.options
+    const item = options.find(el => el.value === id)
+    return item ? item.label : ''
+}
 export default {
     filters: {
-        byOptionName(id, module) {
-            const item = module.options.find(el => el.value === id)
-            return item ? item.label : ''
-        }
+        byOptionName
     },
     methods: {
         ...mapActions(['getOptions']),
         async getAllOptions(modules) {
-            modules.forEach(async item => {
-                await this.getOptions(item)
-            })
+            return await this.getOptions(modules)
         },
-        byOptionName(id, module) {
-            const item = module.options.find(el => el.value === id)
-            return item ? item.label : ''
-        }
+        byOptionName
     }
 }

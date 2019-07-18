@@ -3,52 +3,44 @@ import VueRouter from 'vue-router'
 
 import { fileListToArray } from '@/common/utils/readFile'
 
-import navList from './navList'
+import navSort from './navSort'
 
-const routers = fileListToArray(require.context('./routers/', false, /\.js$/))
-
-const menuRoutes = fileListToArray(
-    require.context('./routers/menus/', false, /\.js$/)
+const routers = fileListToArray(
+    require.context('./modules/', false, /\.js$/),
+    navSort
 )
-
 const routerConfig = {
     // mode: process.env.NODE_ENV === 'development' ? 'history' : 'hash',
     mode: 'history',
-    navList,
     routes: [
         {
             path: '/',
-            redirect: '/index'
+            redirect: '/login',
+            hidden: true
         },
         {
             path: '/index',
-            redirect: '/overview'
+            // redirect: '/roleHome',
+            redirect: '/overview',
+            hidden: true
         },
         {
-            path: '/',
-            component: () => import('@/common/layouts/Home'),
-            children: [
-                ...routers,
-                ...menuRoutes,
-                {
-                    path: '/404',
-                    component: () => import('@/common/layouts/404'),
-                    meta: {
-                        title: '404'
-                    }
-                }
-            ]
+            path: '/roleHome',
+            hidden: true
         },
+        ...routers,
         {
             path: '/login',
             component: () => import('../views/login'),
+            hidden: true,
             meta: {
                 title: '后台登录'
             }
         },
         {
             path: '*',
-            redirect: '404'
+            redirect: '/error/404',
+            hidden: true
         }
     ]
 }
@@ -56,22 +48,5 @@ const routerConfig = {
 Vue.use(VueRouter)
 
 const router = new VueRouter(routerConfig)
-
-router.beforeEach(async(to, from, next) => {
-    if (to.meta.title) {
-        document.title = to.meta.title
-    }
-    if (to.path === '/login') {
-        return next()
-    }
-    const store = router.app.$options.store
-    const user = store.state.auth_user
-    if (!user || !user.access_token) {
-        next({
-            path: '/login'
-        })
-    }
-    return next()
-})
 
 export default router

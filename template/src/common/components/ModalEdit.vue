@@ -9,6 +9,7 @@
          :btn-style="btnStyle"
          :btn-disabled="btnDisabled"
          :before-open="onBeforeOpen"
+         :disabled="disabled"
          @submit="baseFormSubmit"
          @open="reset">
     <baseForm slot="body"

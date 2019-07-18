@@ -3,7 +3,9 @@ import { cover } from '@/common/utils'
 const state = {
     number: 'admin',
     access_token: '',
-    me: {}
+    me: {
+        name: '管理员'
+    }
 }
 
 const actions = {
@@ -16,10 +18,11 @@ const actions = {
     async resetPassword(ctx, { data }) {
         return await this._vm.$axios.put(`/reset/pass`, data)
     },
-    async resetProfile(ctx, { data }) {
-        return await this._vm.$axios.put(`/reset/name`, data)
+    async resetProfile({ state }, { data }) {
+        const id = state.me.id
+        await this._vm.$axios.put(`/reset/profile/${id}`, data)
     },
-    async getProfile({ commit }) {
+    async getProfile({ state, commit }) {
         commit('updateProfile', await this._vm.$axios.get(`/me`))
     }
 }
