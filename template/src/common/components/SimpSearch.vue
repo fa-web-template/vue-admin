@@ -6,7 +6,7 @@
       <el-button :size="respBtnSize"
                  type="primary"
                  @click="handleSubmit">
-        {{ submitBtnText }}
+        \{{ submitBtnText }}
       </el-button>
       <el-button :size="respBtnSize"
                  type="info"

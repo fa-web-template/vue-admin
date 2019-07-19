@@ -20,7 +20,7 @@
                         :duration="3000"
                         prefix="￥"
                         class="count" />
-              <p class="title">{{ item.title }}</p>
+              <p class="title">\{{ item.title }}</p>
             </div>
           </div>
         </v-card>

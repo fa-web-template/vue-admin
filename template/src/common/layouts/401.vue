@@ -8,7 +8,7 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">您没有权限去该页面</div>
-        <div class="bullshit__headline">{{ message }}</div>
+        <div class="bullshit__headline">\{{ message }}</div>
         <div class="bullshit__info">如有疑问请联系网站管理员，或单击下面的按钮返回主页。</div>
         <a class="bullshit__return bullshit__return-back"
            @click="toBack">

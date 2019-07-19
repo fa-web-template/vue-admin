@@ -4,11 +4,11 @@
     <el-breadcrumb-item v-for="(item,index) in levelList"
                         :key="item.path">
       <span v-if="item.redirect==='noredirect'||index==levelList.length-1"
-            class="no-redirect">{{
+            class="no-redirect">\{{
         item.meta.title }}</span>
       <a v-else
          class="link"
-         @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
+         @click.prevent="handleLink(item)">\{{ item.meta.title }}</a>
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>

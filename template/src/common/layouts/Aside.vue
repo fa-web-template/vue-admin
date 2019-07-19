@@ -2,7 +2,7 @@
   <div class="app-aside">
     <div class="title-container">
       <h1 class="title">
-        <router-link to="/index">{{ title }}</router-link>
+        <router-link to="/index">\{{ title }}</router-link>
       </h1>
     </div>
     <el-menu v-if="!_.isEmpty(navList)"
@@ -16,7 +16,7 @@
           <template slot="title">
             <i v-if="item.meta.icon"
                :class="item.meta.icon" />
-            <span>{{ item.meta.title }}</span>
+            <span>\{{ item.meta.title }}</span>
           </template>
           <el-menu-item v-for="subItem of item.children"
                         :key="subItem.name"
@@ -24,7 +24,7 @@
                         class="sub-item-item">
             <i v-if="subItem.meta.icon"
                :class="subItem.meta.icon" />
-            <span>{{ subItem.meta.title }}</span>
+            <span>\{{ subItem.meta.title }}</span>
           </el-menu-item>
         </el-submenu>
         <el-menu-item v-else
@@ -32,7 +32,7 @@
                       :index="item.path">
           <i v-if="item.meta.icon"
              :class="item.meta.icon" />
-          <span>{{ item.meta.title }}</span>
+          <span>\{{ item.meta.title }}</span>
         </el-menu-item>
       </template>
     </el-menu>

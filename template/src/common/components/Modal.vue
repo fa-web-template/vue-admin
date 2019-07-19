@@ -13,7 +13,7 @@
                    :style="btnStyle"
                    :disabled="disabled"
                    class="btn">
-          {{ openBtnText }}
+          \{{ openBtnText }}
         </el-button>
       </slot>
     </div>
@@ -31,12 +31,12 @@
         <slot name="footer">
           <slot name="footer-prepend"></slot>
           <el-button :size="respBtnSize"
-                     @click="hidden">{{ cancelBtnText }}</el-button>
+                     @click="hidden">\{{ cancelBtnText }}</el-button>
           <slot name="footer-middle"></slot>
           <el-button :disabled="btnDisabled"
                      :size="respBtnSize"
                      type="primary"
-                     @click="submit">{{ submitBtnText }}</el-button>
+                     @click="submit">\{{ submitBtnText }}</el-button>
           <slot name="footer-prepend"></slot>
         </slot>
       </span>

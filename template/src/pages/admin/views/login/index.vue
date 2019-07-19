@@ -3,7 +3,7 @@
     <div :class="['login-container',device]">
       <div v-if="!isMobile"
            class="login-text">
-        <h1 class="title">{{ title }}</h1>
+        <h1 class="title">\{{ title }}</h1>
         <p class="message">
           <span>不忘初心，方得始终</span>
           <span>那些成功的人，往往是有着坚定目标，并持续努力的人</span>
@@ -13,7 +13,7 @@
         <el-card>
           <div slot="header"
                class="card-header">
-            <h2 class="card-title">{{ loginTitle }}</h2>
+            <h2 class="card-title">\{{ loginTitle }}</h2>
           </div>
           <base-form :form-item="$v_data[module].login.item"
                      :get-form-data="$v_data[module].login.data"
