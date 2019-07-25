@@ -1,9 +1,9 @@
 {
-    "name": "vue-admin-template",
-    "title": "Vue后台管理模板",
-    "description": "一个Vue后台管理系统",
+    "name": "{{ name }}",
+    "name": "{{ title }}",
+    "description": "{{ desc }}",
     "version": "0.0.1",
-    "author": "4Ark<gd4ark@gmail.com>",
+    "author": "{{ author }}",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
