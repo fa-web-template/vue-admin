@@ -1,7 +1,7 @@
 const { join } = require("path")
-const templateJSON = require("../../template/template.json")
+const templateJSON = require("../../../template/template.json")
 const pages = templateJSON.pages
-const generator_path = join(__dirname, "../template/")
+const generator_path = join(__dirname, "../../template/")
 let tmp_page_value = "admin"
 
 const question = [
