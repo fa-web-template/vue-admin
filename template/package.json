@@ -2,8 +2,8 @@
     "name": "{{ name }}",
     "title": "{{ title }}",
     "description": "{{ desc }}",
-    "version": "0.0.1",
-    "author": "{{ author }}",
+    "version": "1.0.0",
+    "author": "{{{ author }}}",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
