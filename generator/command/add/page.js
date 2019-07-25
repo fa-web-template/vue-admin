@@ -46,6 +46,18 @@ const question = [
                 return true
             }
         }
+    },
+    {
+        name: "title",
+        type: "input",
+        message: "请输入页面标题(中文)",
+        validate(val) {
+            if (val === "") {
+                return "页面名称为必填"
+            } else {
+                return true
+            }
+        }
     }
 ]
 

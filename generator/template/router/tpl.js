@@ -6,7 +6,7 @@ export default [
         redirect: "/users/list",
         name: "{{ name }}",
         meta: {
-            roles: toRoles("{{ roles }}"),
+            roles: toRoles(["{{ roles }}"]),
             title: "{{ title }}",
             icon: "el-icon-ali-icon_yuangongguanli"
         },
@@ -17,7 +17,6 @@ export default [
                 name: "{{ title }}List",
                 meta: {
                     icon: "el-icon-ali-yonghu",
-                    roles: toRoles("{{ roles }}"),
                     title: "{{ title }}"
                 }
             }
