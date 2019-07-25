@@ -1,4 +1,4 @@
-import { toRoles } from "@/common/utils/role"
+// import { toRoles } from "@/common/utils/role"
 export default [
     {
         path: "/{{ name }}",
@@ -6,7 +6,7 @@ export default [
         redirect: "/users/list",
         name: "{{ name }}",
         meta: {
-            roles: toRoles(["{{ roles }}"]),
+            // roles: toRoles(['admin']),
             title: "{{ title }}",
             icon: "el-icon-ali-icon_yuangongguanli"
         },
