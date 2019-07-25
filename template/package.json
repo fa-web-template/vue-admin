@@ -1,6 +1,6 @@
 {
     "name": "{{ name }}",
-    "name": "{{ title }}",
+    "title": "{{ title }}",
     "description": "{{ desc }}",
     "version": "0.0.1",
     "author": "{{ author }}",
