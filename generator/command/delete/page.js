@@ -32,7 +32,7 @@ function getFileTplList(answers, user_path) {
             path: join(user_path, `src/common/data/modules/${name}.js`)
         },
         {
-            path: join(user_path, `src/pages/${page}/router/routers/${name}.js`)
+            path: join(user_path, `src/pages/${page}/router/modules/${name}.js`)
         },
         {
             path: join(user_path, `src/pages/${page}/store/modules/${name}.js`)

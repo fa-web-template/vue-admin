@@ -59,7 +59,7 @@ function getFileTplList(answers, user_path) {
         },
         {
             from: join(generator_path, "router/tpl.js"),
-            to: join(user_path, `src/pages/${page}/router/routers/${name}.js`)
+            to: join(user_path, `src/pages/${page}/router/modules/${name}.js`)
         },
         {
             from: join(generator_path, "store/tpl.js"),
