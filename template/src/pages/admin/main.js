@@ -36,7 +36,7 @@ if (config.is_prod) {
     require('@/static/iconfont/iconfont.css')
 }
 
-const baseURL = config.is_prod ? config.server_url : config.dev_server_url
+const baseURL = config.base_url
 
 Vue.use(axios, {
     router,
