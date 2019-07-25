@@ -21,8 +21,8 @@ export default new vuex.Store({
         createPersist({
             namespace: process.env.APP_NAME + '-admin',
             initialState: {},
-            // one week
-            expires: 7 * 24 * 60 * 60 * 1e3
+            // one day
+            expires: 1 * 24 * 60 * 60 * 1e3
         })
     ]
 })

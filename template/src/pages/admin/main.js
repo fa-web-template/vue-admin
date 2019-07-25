@@ -2,7 +2,6 @@ import Vue from 'vue'
 import _ from 'lodash'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import '@/static/iconfont/iconfont.css'
 import * as filters from '@/common/filters'
 import config from '@/common/config'
 import data from '@/common/data/index'
@@ -12,6 +11,11 @@ import store from './store/index'
 import axios from '@/common/utils/axios'
 import vCard from '@/common/components/Card'
 import NotSubRouter from '@/common/components/NotSubRouter'
+
+import './router/permission'
+
+import VCharts from 'v-charts'
+Vue.use(VCharts)
 
 Vue.use(ElementUI)
 
@@ -28,7 +32,11 @@ Vue.prototype.$config = config
 Vue.prototype.$v_data = data
 Vue.config.productionTip = false
 
-const baseURL = config.is_prod ? config.server_url : config.dev_server_url
+if (config.is_prod) {
+    require('@/static/iconfont/iconfont.css')
+}
+
+const baseURL = config.base_url
 
 Vue.use(axios, {
     router,

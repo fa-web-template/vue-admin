@@ -1,5 +1,6 @@
 <template>
-  <el-table v-loading="loading"
+  <el-table :key="'table-' + key"
+            v-loading="loading"
             :data="data"
             fit
             @selection-change="handleSelectionChange"
@@ -45,12 +46,18 @@ export default {
             default: true
         }
     },
+    data: () => ({
+        key: new Date().getTime()
+    }),
     methods: {
         handleSelectionChange(val) {
             this.$emit('selection-change', val)
         },
         handleSortChange(val) {
             this.$emit('sort-change', val)
+        },
+        refreshTable() {
+            this.key++
         }
     }
 }

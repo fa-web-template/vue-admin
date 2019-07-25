@@ -52,6 +52,7 @@
 </template>
 <script>
 const __module = '{{ name }}'
+const allOptions = []
 import vTable from '@/common/components/Table'
 import Pagination from '@/common/components/Pagination'
 import ModalEdit from '@/common/components/ModalEdit'
@@ -95,6 +96,7 @@ export default {
   },
   async created() {
     await this.getData()
+    await this.getAllOptions(allOptions)
     this.loaded = true
     this.makeLoaded()
   },

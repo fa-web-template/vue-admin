@@ -10,7 +10,6 @@ const pages = [
     {
         index: {
             entry: `src/pages/${current}/main.js`,
-            template: `src/pages/${current}/tpl.html`,
             title: pkg.title,
             filename: 'index.html'
         }
@@ -19,7 +18,6 @@ const pages = [
     {
         index: {
             entry: 'src/pages/admin/main.js',
-            template: 'src/pages/admin/tpl.html',
             title: pkg.title,
             filename: 'index.html'
         }

@@ -15,6 +15,10 @@ export default {
         btnIcon: {
             type: String,
             default: ''
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     methods: {
@@ -23,6 +27,7 @@ export default {
         },
         afterSuccess() {
             this.$emit('get-data')
+            this.$emit('refresh')
             this.$refs.modal.hidden()
         }
     }

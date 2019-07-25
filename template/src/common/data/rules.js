@@ -18,18 +18,19 @@ export default {
         message = '',
         required = true,
         trigger = 'blur',
-        type = null
+        type = ''
     } = {}) {
         const _message = label ? `${label}为必填` : '此字段为必填'
         message = message || _message
-        return [
-            {
-                type,
-                required,
-                trigger,
-                message
-            }
-        ]
+        const res = {
+            required,
+            trigger,
+            message
+        }
+        if (type) {
+            res.type = type
+        }
+        return [res]
     },
     /**
      *

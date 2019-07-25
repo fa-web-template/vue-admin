@@ -1,11 +1,12 @@
 import loading from './loading'
 import getData from './getData'
 import ResponsiveSize from './ResponsiveSize'
+import hasRole from './hasRole'
 import { mapActions } from 'vuex'
 import { warning, success } from '@/common/utils/message'
 import confirm from '@/common/utils/confirm'
 export default {
-    mixins: [ResponsiveSize, loading, getData],
+    mixins: [ResponsiveSize, hasRole, loading, getData],
     data: () => ({
         multipleSelection: [],
         loaded: false
@@ -63,6 +64,9 @@ export default {
             return h('i', {
                 class: 'table-header-icon ' + column.label
             })
+        },
+        refreshTable() {
+            this.$refs.table.refreshTable()
         }
     }
 }

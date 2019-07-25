@@ -2,7 +2,7 @@
   <el-form v-if="loaded"
            ref="form"
            :model="formData"
-           :show-message="true"
+           :show-message="showMessage"
            :inline="inline"
            :rules="rules"
            :label-width="showLabel ? '85px' : '0'"
@@ -40,6 +40,10 @@ export default {
             type: Boolean,
             default: true
         },
+        showMessage: {
+            type: Boolean,
+            default: true
+        },
         inline: {
             type: Boolean,
             default: false
@@ -55,15 +59,19 @@ export default {
     },
     methods: {
         submit() {
+            let res = false
             this.$refs.form.validate(valid => {
                 if (valid) {
+                    res = true
                     return this.$emit('submit')
                 }
                 warning('请填写正确！')
             })
+            return res
         },
         reset() {
             this.$refs.form.resetFields()
+            return this.formData
         },
         initRules(formItem, key = '') {
             formItem.forEach((el, index) => {

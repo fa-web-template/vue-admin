@@ -5,33 +5,34 @@
         <router-link to="/index">\{{ title }}</router-link>
       </h1>
     </div>
-    <el-menu :default-active="activeIndex"
+    <el-menu v-if="!_.isEmpty(navList)"
+             :default-active="activeIndex"
              class="el-menu-vertical"
              router>
       <template v-for="item of navList">
-        <el-submenu v-if="item.items"
-                    :key="item.index"
-                    :index="item.index">
+        <el-submenu v-if="item.children"
+                    :key="item.name"
+                    :index="item.path">
           <template slot="title">
-            <i v-if="item.icon"
-               :class="item.icon" />
-            <span>\{{ item.title }}</span>
+            <i v-if="item.meta.icon"
+               :class="item.meta.icon" />
+            <span>\{{ item.meta.title }}</span>
           </template>
-          <el-menu-item v-for="subItem of item.items"
-                        :key="subItem.index"
-                        :index="subItem.index"
+          <el-menu-item v-for="subItem of item.children"
+                        :key="subItem.name"
+                        :index="subItem.path"
                         class="sub-item-item">
-            <i v-if="subItem.icon"
-               :class="subItem.icon" />
-            <span>\{{ subItem.title }}</span>
+            <i v-if="subItem.meta.icon"
+               :class="subItem.meta.icon" />
+            <span>\{{ subItem.meta.title }}</span>
           </el-menu-item>
         </el-submenu>
         <el-menu-item v-else
-                      :key="item.index"
-                      :index="item.index">
-          <i v-if="item.icon"
-             :class="item.icon" />
-          <span>\{{ item.title }}</span>
+                      :key="item.name"
+                      :index="item.path">
+          <i v-if="item.meta.icon"
+             :class="item.meta.icon" />
+          <span>\{{ item.meta.title }}</span>
         </el-menu-item>
       </template>
     </el-menu>
@@ -45,10 +46,7 @@ export default {
         activeIndex: ''
     }),
     computed: {
-        ...mapGetters(['title']),
-        navList() {
-            return this.$router.options.navList
-        }
+        ...mapGetters(['title', 'navList'])
     },
     watch: {
         $route() {
@@ -63,7 +61,11 @@ export default {
     },
     methods: {
         updateActive() {
-            this.activeIndex = this.$route.matched[1].path
+            const match = this.$route.matched[1]
+            const path = match.meta.isReplace
+                ? this.$route.matched[0].path
+                : match.path
+            this.activeIndex = path
         }
     }
 }

@@ -11,6 +11,7 @@
                    :type="btnType"
                    :icon="btnIcon"
                    :style="btnStyle"
+                   :disabled="disabled"
                    class="btn">
           \{{ openBtnText }}
         </el-button>
@@ -53,6 +54,10 @@ export default {
         title: {
             type: String,
             default: '弹窗'
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         },
         needDrag: {
             type: Boolean,
@@ -111,6 +116,7 @@ export default {
     methods: {
         visible() {
             if (!this.beforeOpen()) return
+            if (this.disabled) return
             this.dialogVisible = true
         },
         hidden() {

@@ -1,9 +1,11 @@
 <template>
   <c-form v-if="loaded"
           ref="form"
+          :inline="inline"
           :form-item="formItem"
           :form-data="newFormData"
           :show-label="showLabel"
+          :show-message="showMessage"
           @submit="handleSubmit">
     <el-form-item>
       <slot name="prepend" />
@@ -51,7 +53,15 @@ export default {
             type: Function,
             default: () => {}
         },
+        inline: {
+            type: Boolean,
+            default: false
+        },
         showLabel: {
+            type: Boolean,
+            default: true
+        },
+        showMessage: {
             type: Boolean,
             default: true
         },
@@ -104,11 +114,12 @@ export default {
         },
         resetForm() {
             this.$nextTick(() => {
-                this.$refs.form.reset()
+                const formData = this.$refs.form.reset()
+                this.$emit('reset', formData)
             })
         },
         submit() {
-            this.$refs.form.submit()
+            return this.$refs.form.submit()
         },
         handleSubmit() {
             const data = retainKeys(
