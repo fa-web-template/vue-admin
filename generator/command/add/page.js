@@ -48,16 +48,10 @@ const question = [
         }
     },
     {
-        name: "title",
+        name: "roles",
         type: "input",
-        message: "请输入页面标题(中文)",
-        validate(val) {
-            if (val === "") {
-                return "页面名称为必填"
-            } else {
-                return true
-            }
-        }
+        message: "请输入哪些角色可访问，使用逗号分隔，默认为空",
+        default: ""
     }
 ]
 

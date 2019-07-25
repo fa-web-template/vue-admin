@@ -23,11 +23,12 @@ const role_config = [
 ]
 
 export const toRoles = roleNames => {
-    const res = roleNames.map(name => {
+    let roles = roleNames.map(name => {
         const rule = role_config.find(item => item.label === name)
         return rule ? rule.value : null
     })
-    return res.filter(item => item)
+    roles = roles.filter(item => item)
+    return roles.length ? roles : null
 }
 
 export const findRoleHome = roleIndexs => {
