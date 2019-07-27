@@ -3,12 +3,6 @@ export default {
     common: {
         item: [
             {
-                label: "编号",
-                key: "id",
-                type: "text",
-                rules: [...rules.required({ label: "编号" })]
-            },
-            {
                 label: "名称",
                 key: "name",
                 type: "text",
@@ -17,7 +11,6 @@ export default {
             }
         ],
         data: () => ({
-            id: "",
             name: ""
         })
     },
@@ -29,7 +22,7 @@ export default {
                 key: "id",
                 type: "text",
                 meta: {
-                    operation: "like"
+                    operation: "="
                 }
             },
             {

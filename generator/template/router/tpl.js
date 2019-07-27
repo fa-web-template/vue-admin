@@ -17,7 +17,7 @@ export default [
                 name: "{{ name }}List",
                 meta: {
                     icon: "el-icon-ali-yonghu",
-                    title: "{{ title }}"
+                    title: "{{ title }}列表"
                 }
             }
         ]

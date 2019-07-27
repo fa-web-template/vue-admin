@@ -8,7 +8,7 @@ import getPageTitle from '@/common/utils/get-page-title'
 
 const whiteList = ['/login'] // no redirect whitelist
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     // start progress bar
     NProgress.start()
     // set page title
@@ -17,19 +17,18 @@ router.beforeEach(async(to, from, next) => {
         return next()
     }
 
-    /*
-    const store = router.app.$options.store
-    const user = store.state.auth_user
-    const roles = user.me.roleArr
-    if (!user || !user.access_token) {
-        return next(`/login?redirect=${to.path}`)
-    }
-    if (!hasPermission(roles, to)) {
-        return next(`/error/401?redirect=${from.path}`)
-    }
-    if (to.path === '/roleHome') {
-        return next(findRoleHome(roles))
-    }*/
+    // const store = router.app.$options.store
+    // const user = store.state.auth_user
+    // const roles = user.me.roleArr
+    // if (!user || !user.access_token) {
+    //     return next(`/login?redirect=${to.path}`)
+    // }
+    // if (!hasPermission(roles, to)) {
+    //     return next(`/error/401?redirect=${from.path}`)
+    // }
+    // if (to.path === '/roleHome') {
+    //     return next(findRoleHome(roles))
+    // }
 
     return next()
 })

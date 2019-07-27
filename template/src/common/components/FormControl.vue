@@ -4,6 +4,7 @@
     <el-select v-if="item.type === 'select'"
                v-model="val"
                :multiple="_.get(item,'meta.multiple')"
+               :multiple-limit="_.get(item,'meta.multiple_limit',0)"
                :size="respFormControlSize"
                :filterable="_.get(item,'meta.filterable')"
                :placeholder="getPlaceholder('选择')"
@@ -16,7 +17,7 @@
       <template v-if="_.get(item,'meta.create_link')"
                 slot="empty">
         <div class="create-select">
-          <span>该\{{ item.label }}不存在</span>
+          <span>该{{ item.label }}不存在</span>
           <router-link :to="item.meta.create_link+'?redirect='+$route.path">点我创建</router-link>
         </div>
       </template>
@@ -26,11 +27,11 @@
                     v-model="val"
                     :size="respFormControlSize"
                     @change="changeSelect">
-      <component :is="_.get(item,'meta.radioType','el-radio')"
+      <component :is="_.get(item,'meta.radio_type','el-radio')"
                  v-for="option in getOptions()"
                  :key="option.value"
                  :label="option.value">
-        \{{ option.label }}
+        {{ option.label }}
       </component>
     </el-radio-group>
     <!-- cascader -->
@@ -113,7 +114,7 @@
           <i :class="['icon',item.meta.slot.value]" />
         </template>
         <template v-else>
-          \{{ item.meta.slot.value }}
+          {{ item.meta.slot.value }}
         </template>
       </template>
     </el-input>

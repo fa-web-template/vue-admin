@@ -1,3 +1,3 @@
-const sorts = ['overview', 'users']
+const sorts = ['overview']
 
 export default sorts.map(item => `./${item}.js`)

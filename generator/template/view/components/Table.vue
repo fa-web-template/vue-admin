@@ -58,6 +58,7 @@ import Pagination from '@/common/components/Pagination'
 import ModalEdit from '@/common/components/ModalEdit'
 import ModalAdd from '@/common/components/ModalAdd'
 import ManageTable from '@/common/mixins/ManageTable'
+import getOptionName from '@/common/mixins/getOptionName'
 import { mapState, mapMutations } from 'vuex'
 export default {
   components: {
@@ -66,7 +67,7 @@ export default {
     ModalEdit,
     ModalAdd
   },
-  mixins: [ManageTable],
+  mixins: [ManageTable, getOptionName],
   props: {
     title: {
       type: String,
@@ -90,6 +91,7 @@ export default {
     ]
   }),
   computed: {
+    ...mapState(allOptions),
     ...mapState({
       state: __module
     })
