@@ -85,23 +85,6 @@
     }
 }
 
-@mixin footer {
-    @include wh(100%, 30px);
-    @include flex;
-    align-items: center;
-    justify-content: space-between;
-    color: rgb(102, 102, 102);
-    opacity: 0.5;
-
-    .title {
-        font-size: 0.8rem;
-    }
-
-    .copyright {
-        font-size: 0.7rem;
-    }
-}
-
 @mixin full-tab {
     @include flex-column;
     height: 100%;

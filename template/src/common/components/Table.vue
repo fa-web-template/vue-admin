@@ -80,7 +80,7 @@ export default {
         overflow: auto;
     }
     a {
-        color: $gighlight-color;
+        color: $color-primary;
     }
 }
 .el-table td,

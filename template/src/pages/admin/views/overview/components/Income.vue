@@ -125,12 +125,9 @@ export default {
             }
         }
     }
-}
-</style>
-<style lang="scss">
-.income-container {
-    .el-card__body {
+    /deep/ .el-card__body {
         padding: 0;
     }
 }
 </style>
+

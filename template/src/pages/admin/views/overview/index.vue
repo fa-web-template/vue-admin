@@ -68,7 +68,7 @@ export default {
         }
     },
     async created() {
-        await this.$nextTick(async() => {
+        await this.$nextTick(async () => {
             await this.init()
             Object.keys(this.$refs).map(item => {
                 if (item.indexOf('chart') === 0) {
@@ -121,11 +121,32 @@ export default {
     }
 }
 </style>
-<style lang="scss">
-.overview-container {
-    .turnover-type-select {
+<style lang="scss" scoped>
+.inner-container {
+    overflow-y: auto !important;
+    /deep/ .turnover-type-select {
         .el-input__inner {
             border: none;
+        }
+    }
+}
+.info .info-box {
+    @include flex;
+    .icon-container {
+        width: 20%;
+        @include sub-center;
+        .icon {
+            color: white;
+            font-size: 2.5rem;
+        }
+    }
+    .content {
+        flex: 1;
+        @include sub-center;
+        @include flex-column;
+        line-height: 2;
+        .count {
+            font-size: 2.5rem;
         }
     }
 }

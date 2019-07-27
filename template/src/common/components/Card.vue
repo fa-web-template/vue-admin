@@ -29,7 +29,6 @@ export default {
     overflow-y: auto;
     @include no-scrollbar;
 }
-
 * + .el-card {
     margin-top: $app-padding;
 }
@@ -39,12 +38,10 @@ export default {
 .el-card__body {
     padding: $card-body-padding;
 }
-
 .card-title {
     font-size: 1.2rem;
     font-weight: normal;
 }
-
 .card-header {
     height: $card-header-height;
     @include flex;

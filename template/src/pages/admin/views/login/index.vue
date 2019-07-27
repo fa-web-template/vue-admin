@@ -113,25 +113,21 @@ export default {
         .login-panel {
             width: 350px;
         }
+        /deep/ .el-card__body {
+            padding-top: 15px;
+        }
+        /deep/ .el-form-item__content {
+            line-height: 28px;
+        }
+        /deep/ .el-form-item {
+            margin-bottom: 7px;
+        }
+        /deep/ .el-button--mini {
+            padding: 7px 8px;
+        }
     }
 }
 .card-header {
     justify-content: center;
-}
-</style>
-<style lang="scss">
-.login-container {
-    .el-card__body {
-        padding-top: 15px;
-    }
-    .el-form-item__content {
-        line-height: 28px;
-    }
-    .el-form-item {
-        margin-bottom: 7px;
-    }
-    .el-button--mini {
-        padding: 7px 8px;
-    }
 }
 </style>
