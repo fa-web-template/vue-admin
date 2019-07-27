@@ -22,6 +22,9 @@ export default {
             this.setHTMLClass()
         }
     },
+    created() {
+        this.initNavList()
+    },
     mounted() {
         this.setHTMLClass()
     },
