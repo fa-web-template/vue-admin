@@ -1,4 +1,4 @@
-// import { toRoles } from "@/common/utils/role"
+// import { toRoles } from '@/common/utils/role'
 export default [
     {
         path: "/{{ name }}",
@@ -14,7 +14,7 @@ export default [
             {
                 path: "list",
                 component: () => import("@/pages/{{ page }}/views/{{ name }}"),
-                name: "{{ title }}List",
+                name: "{{ name }}List",
                 meta: {
                     icon: "el-icon-ali-yonghu",
                     title: "{{ title }}"

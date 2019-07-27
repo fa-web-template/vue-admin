@@ -1,5 +1,5 @@
 <template>
-  <not-sub-router :name="module">
+  <not-sub-router :name="`${module}List`">
     <search :module="module"
             :get-data="getData"
             @before-change="beforeChange"

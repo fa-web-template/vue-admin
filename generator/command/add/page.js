@@ -46,12 +46,6 @@ const question = [
                 return true
             }
         }
-    },
-    {
-        name: "roles",
-        type: "input",
-        message: "请输入哪些角色可访问，使用逗号分隔，默认为空",
-        default: ""
     }
 ]
 
