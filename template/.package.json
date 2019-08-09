@@ -1,9 +1,9 @@
 {
-  "name": "{{ name }}",
-  "title": "{{ title }}",
-  "description": "{{ desc }}",
+  "name": "vue-admin",
+  "title": "Vue 后台管理",
+  "description": "一个 Vue 后台管理系统模板",
   "version": "0.0.1",
-  "author": "{{{ author }}}",
+  "author": "gd4ark <gd.4ark@gmail.com>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
