@@ -23,6 +23,15 @@
              @selection-change="handleSelectionChange"
              @sort-change="handleSortChange">
       <template slot="append">
+        <el-table-column prop="created_at"
+                         label="创建时间"
+                         sortable="custom"
+                         align="center"
+                         min-width="120">
+          <template slot-scope="scope">
+            \{{ scope.row.created_at }}
+          </template>
+        </el-table-column>
         <el-table-column label="操作"
                          min-width="130"
                          align="center">
@@ -51,18 +60,17 @@
   </v-card>
 </template>
 <script>
-const __module = '{{ name }}'
-const allOptions = []
-import vTable from '@/common/components/Table'
+const allOptions = ['']
+import VTable from '@/common/components/VTable'
 import Pagination from '@/common/components/Pagination'
 import ModalEdit from '@/common/components/ModalEdit'
 import ModalAdd from '@/common/components/ModalAdd'
 import ManageTable from '@/common/mixins/ManageTable'
 import getOptionName from '@/common/mixins/getOptionName'
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   components: {
-    vTable,
+    VTable,
     Pagination,
     ModalEdit,
     ModalAdd
@@ -71,11 +79,10 @@ export default {
   props: {
     title: {
       type: String,
-      default: '{{ title }}表'
+      default: '{{ title }}列表'
     }
   },
   data: () => ({
-    module: __module,
     columns: [
       {
         prop: 'id',
@@ -91,21 +98,12 @@ export default {
     ]
   }),
   computed: {
-    ...mapState(allOptions),
-    ...mapState({
-      state: __module
-    })
+    ...mapState(allOptions)
   },
   async created() {
-    await this.getData()
-    await this.getAllOptions(allOptions)
+    await Promise.all([this.getData(), this.getAllOptions(allOptions)])
     this.loaded = true
     this.makeLoaded()
-  },
-  methods: {
-    ...mapMutations(__module, {
-      setOrder: 'update'
-    })
   }
 }
 </script>

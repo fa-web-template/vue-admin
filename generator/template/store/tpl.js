@@ -1,13 +1,14 @@
 import commonState from '@/common/store/state'
 import commonMutations from '@/common/store/mutations'
 
+const module = '{{ name }}'
+
 const state = {
   ...commonState
 }
 
 const actions = {
   async getData(ctx, id) {
-    const module = '{{ name }}'
     const url = id ? module + `/${id}` : module
     return await ctx.dispatch(
       'get',

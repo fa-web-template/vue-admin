@@ -1,22 +1,23 @@
 <template>
   <not-sub-router :name="`${module}List`">
-    <search :module="module"
-            :get-data="getData"
-            @before-change="beforeChange"
-            @after-change="afterChange" />
+    <base-search :module="module"
+                 :get-data="getData"
+                 @before-change="beforeChange"
+                 @after-change="afterChange" />
     <s-table ref="table"
+             :module="module"
              :get-data="getData" />
   </not-sub-router>
 </template>
 <script>
-const __module = '{{ name }}'
-import Search from '@/common/components/Search'
-import sTable from './components/{{upperFirst name }}Table'
+const __module = '{{module}}'
+import BaseSearch from '@/common/components/BaseSearch'
+import sTable from './components/UsersTable'
 import { mapActions } from 'vuex'
 import syncChange from '@/common/mixins/syncChange'
 export default {
   components: {
-    Search,
+    BaseSearch,
     sTable
   },
   mixins: [syncChange],

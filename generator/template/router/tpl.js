@@ -3,7 +3,7 @@ export default [
   {
     path: '/{{ name }}',
     component: () => import('@/common/layouts/Home'),
-    redirect: '/users/list',
+    redirect: '/{{ name }}/list',
     name: '{{ name }}',
     meta: {
       // roles: toRoles(['admin']),
