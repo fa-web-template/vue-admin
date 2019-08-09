@@ -1,0 +1,20 @@
+{
+  "name": "vue-admin",
+  "version": "1.0.0",
+  "description": "> A Vue admin project template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fa-web-template/vue-admin.git"
+  },
+  "keywords": [],
+  "author": "gd4ark <gd.4ark@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fa-web-template/vue-admin/issues"
+  },
+  "homepage": "https://github.com/fa-web-template/vue-admin#readme"
+}

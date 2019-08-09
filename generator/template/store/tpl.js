@@ -1,38 +1,38 @@
-import commonState from "@/common/store/state"
-import commonMutations from "@/common/store/mutations"
+import commonState from '@/common/store/state'
+import commonMutations from '@/common/store/mutations'
 
 const state = {
-    ...commonState
+  ...commonState
 }
 
 const actions = {
-    async getData(ctx, id) {
-        const module = "{{ name }}"
-        const url = id ? module + `/${id}` : module
-        return await ctx.dispatch(
-            "get",
-            {
-                module,
-                url,
-                doCommit: !id
-            },
-            {
-                root: true
-            }
-        )
-    }
+  async getData(ctx, id) {
+    const module = '{{ name }}'
+    const url = id ? module + `/${id}` : module
+    return await ctx.dispatch(
+      'get',
+      {
+        module,
+        url,
+        doCommit: !id
+      },
+      {
+        root: true
+      }
+    )
+  }
 }
 
 const getters = {}
 
 const mutations = {
-    ...commonMutations
+  ...commonMutations
 }
 
 export default {
-    namespaced: true,
-    state,
-    actions,
-    getters,
-    mutations
+  namespaced: true,
+  state,
+  actions,
+  getters,
+  mutations
 }
