@@ -3,18 +3,18 @@ import { Message } from 'element-ui'
 const duration = 1500
 
 const msg = (type, message) => {
-    return new Promise(resolve => {
-        Message({
-            message,
-            type,
-            duration,
-            center: true,
-            showClose: true,
-            onClose: () => {
-                resolve()
-            }
-        })
+  return new Promise(resolve => {
+    Message({
+      message,
+      type,
+      duration,
+      center: true,
+      showClose: true,
+      onClose: () => {
+        resolve()
+      }
     })
+  })
 }
 
 /**
@@ -25,7 +25,7 @@ const msg = (type, message) => {
  * @returns
  */
 export function success(message) {
-    return msg('success', message)
+  return msg('success', message)
 }
 
 /**
@@ -36,7 +36,7 @@ export function success(message) {
  * @returns {Promise}
  */
 export function warning(message) {
-    return msg('warning', message)
+  return msg('warning', message)
 }
 
 /**
@@ -47,7 +47,7 @@ export function warning(message) {
  * @returns {Promise}
  */
 export function error(message) {
-    return msg('error', message)
+  return msg('error', message)
 }
 
 /**
@@ -58,5 +58,5 @@ export function error(message) {
  * @returns {Promise}
  */
 export function info(message) {
-    return msg('info', message)
+  return msg('info', message)
 }

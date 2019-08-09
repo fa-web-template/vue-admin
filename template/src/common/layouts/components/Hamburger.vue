@@ -6,21 +6,21 @@
 </template>
 <script>
 export default {
-    props: {
-        isActive: {
-            type: Boolean,
-            default: false
-        },
-        device: {
-            type: String,
-            required: true
-        }
+  props: {
+    isActive: {
+      type: Boolean,
+      default: false
     },
-    methods: {
-        toggleClick() {
-            this.$emit('toggle-click')
-        }
+    device: {
+      type: String,
+      required: true
     }
+  },
+  methods: {
+    toggleClick() {
+      this.$emit('toggle-click')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

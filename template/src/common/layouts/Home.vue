@@ -1,23 +1,24 @@
 <template>
-    <div :class="['wrapper',device,classObj]">
-        <transition name="el-fade-in">
-            <div v-show="isMobile && sidebar.opened"
-                 class="drawer-bg"
-                 @click="handleClickOutside" />
-        </transition>
-        <div :class="['sidebar']">
-            <v-aside />
-        </div>
-        <div class="container">
-            <v-header />
-            <div class="app-content">
-                <transition name="el-fade-in">
-                    <router-view v-show="load" />
-                </transition>
-                <v-footer />
-            </div>
-        </div>
+  <div :class="['wrapper',device,classObj]">
+    <transition name="el-fade-in">
+      <div v-show="isMobile && sidebar.opened"
+           class="drawer-bg"
+           @click="handleClickOutside" />
+    </transition>
+    <div :class="['sidebar']">
+      <v-aside />
     </div>
+    <div class="container">
+      <v-header />
+      <div class="app-content">
+        <transition name="el-fade-in">
+          <router-view v-show="load"
+                       :key="$route.fullPath" />
+        </transition>
+        <v-footer />
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import vHeader from './Header'
@@ -25,32 +26,32 @@ import vAside from './Aside'
 import vFooter from './Footer'
 import { mapGetters } from 'vuex'
 export default {
-    components: {
-        vHeader,
-        vAside,
-        vFooter
-    },
-    data: () => ({
-        load: false
-    }),
-    computed: {
-        ...mapGetters(['device', 'sidebar', 'isMobile']),
-        classObj() {
-            return {
-                hideSidebar: !this.sidebar.opened,
-                openSidebar: this.sidebar.opened,
-                mobile: this.isMobile
-            }
-        }
-    },
-    mounted() {
-        this.load = true
-    },
-    methods: {
-        handleClickOutside() {
-            this.$store.dispatch('app/toggleSidebar')
-        }
+  components: {
+    vHeader,
+    vAside,
+    vFooter
+  },
+  data: () => ({
+    load: false
+  }),
+  computed: {
+    ...mapGetters(['device', 'sidebar', 'isMobile']),
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
+        mobile: this.isMobile
+      }
     }
+  },
+  mounted() {
+    this.load = true
+  },
+  methods: {
+    handleClickOutside() {
+      this.$store.dispatch('app/toggleSidebar')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -4,6 +4,7 @@
             :submit-btn-text="submitBtnText"
             :btn-disabled="btnDisabled"
             :form-item="formItem"
+            :label-width="labelWidth"
             :get-form-data="getFormData"
             @submit="submit">
     <slot />
@@ -12,7 +13,7 @@
 <script>
 import Add from '@/common/mixins/Add'
 export default {
-    name: 'Add',
-    mixins: [Add]
+  name: 'BaseAdd',
+  mixins: [Add]
 }
 </script>

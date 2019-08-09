@@ -94,3 +94,15 @@
         @include no-scrollbar;
     }
 }
+
+@mixin card-body-scroll_y {
+    @include flex-column;
+    height: 100%;
+    overflow: hidden;
+    > .el-card__body {
+        flex: 1;
+        @include wh(100%);
+        @include no-scrollbar;
+        overflow-y: auto;
+    }
+}

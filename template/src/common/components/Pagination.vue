@@ -13,55 +13,55 @@ import getData from '@/common/mixins/getData'
 import submitChange from '@/common/mixins/submitChange'
 import { mapGetters } from 'vuex'
 export default {
-    name: 'Pagination',
-    mixins: [getData, submitChange],
-    props: {
-        state: {
-            type: Object,
-            required: true
-        },
-        module: {
-            type: String,
-            required: true
-        }
+  name: 'Pagination',
+  mixins: [getData, submitChange],
+  props: {
+    state: {
+      type: Object,
+      required: true
     },
-    computed: {
-        ...mapGetters(['device', 'isMobile']),
-        layout() {
-            return this.isMobile ? this.state.small_layout : this.state.layout
-        },
-        total() {
-            return this.state.total
-        },
-        pagerCount() {
-            return this.state.pager_count
-        },
-        pageSizes() {
-            return this.state.page_sizes
-        },
-        currentPage: {
-            get() {
-                return this.state.current_page
-            },
-            async set(value) {
-                this.$store.commit(`${this.module}/currentPage`, value)
-                this.beforeChange()
-                await this.getData()
-                this.afterChange()
-            }
-        },
-        perPage: {
-            get() {
-                return this.state.per_page
-            },
-            async set(value) {
-                this.$store.commit(`${this.module}/sizeChange`, value)
-                this.beforeChange()
-                await this.getData()
-                this.afterChange()
-            }
-        }
+    module: {
+      type: String,
+      required: true
     }
+  },
+  computed: {
+    ...mapGetters(['device', 'isMobile']),
+    layout() {
+      return this.isMobile ? this.state.small_layout : this.state.layout
+    },
+    total() {
+      return this.state.total
+    },
+    pagerCount() {
+      return this.state.pager_count
+    },
+    pageSizes() {
+      return this.state.page_sizes
+    },
+    currentPage: {
+      get() {
+        return this.state.current_page
+      },
+      async set(value) {
+        this.$store.commit(`${this.module}/currentPage`, value)
+        this.beforeChange()
+        await this.getData()
+        this.afterChange()
+      }
+    },
+    perPage: {
+      get() {
+        return this.state.per_page
+      },
+      async set(value) {
+        this.$store.commit(`${this.module}/sizeChange`, value)
+        this.beforeChange()
+        await this.getData()
+        this.afterChange()
+      }
+    }
+  }
 }
 </script>
 <style lang="scss">

@@ -36,98 +36,105 @@ import vFooter from '@/common/layouts/Footer'
 import getRedirect from '@/common/mixins/getRedirect'
 import { mapActions, mapGetters } from 'vuex'
 export default {
-    components: {
-        BaseForm,
-        vFooter
-    },
-    mixins: [getRedirect],
-    data: () => ({
-        module: __module
-    }),
-    computed: {
-        ...mapGetters(['device', 'isMobile', 'title']),
-        loginTitle() {
-            return this.isMobile
-                ? this.$config.app_title + '-' + this.$route.meta.title
-                : this.$route.meta.title
-        }
-    },
-    methods: {
-        ...mapActions(__module, ['login', 'getProfile']),
-        async submit(data) {
-            // await this.login({
-            //     data
-            // })
-            // await this.getProfile()
-            this.$root.$children[0].initNavList()
-            this.$router.push({
-                path: this.redirect || '/index',
-                query: this.otherQuery
-            })
-        }
+  components: {
+    BaseForm,
+    vFooter
+  },
+  mixins: [getRedirect],
+  data: () => ({
+    module: __module
+  }),
+  computed: {
+    ...mapGetters(['device', 'isMobile', 'title']),
+    loginTitle() {
+      return this.isMobile
+        ? this.$config.app_title + '-' + this.$route.meta.title
+        : this.$route.meta.title
     }
+  },
+  methods: {
+    ...mapActions(__module, ['login', 'getProfile']),
+    async submit(data) {
+      //   await this.login({
+      //     data
+      //   })
+      //   await this.getProfile()
+      this.$root.$children[0].initNavList()
+      this.$router.push({
+        path: this.redirect || '/index',
+        query: this.otherQuery
+      })
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.app-footer {
+  color: white;
+  opacity: 0.6;
+}
+</style>
+
+<style lang="scss" scoped>
 .inner-container {
-    @include padding-x;
-    @include flex-column;
-    justify-content: space-around;
-    background: url('../../../../static/images/login_bg.jpg');
-    background-size: cover;
-    position: relative;
-    z-index: 1;
-    &::after {
-        content: '';
-        @include mask(-1);
+  @include padding-x;
+  @include flex-column;
+  justify-content: space-around;
+  background: url('../../../../static/images/login_bg.jpg');
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  &::after {
+    content: '';
+    @include mask(-1);
+  }
+  .login-container {
+    flex: 1;
+    &.desktop {
+      @include sub-center;
+      justify-content: space-around;
     }
-    .login-container {
-        flex: 1;
-        &.desktop {
-            @include sub-center;
-            justify-content: space-around;
-        }
-        &.mobile {
-            padding: 60% 0;
-            @include flex-column;
-            @include sub-center;
-            justify-content: space-around;
-            .login-panel {
-                width: 95%;
-            }
-        }
-        .login-text {
-            color: white;
-            .title {
-                font-size: 2.3rem;
-                margin-bottom: 1rem;
-            }
-            .message {
-                span {
-                    display: block;
-                }
-                line-height: 2.5;
-            }
-        }
-        .login-panel {
-            width: 350px;
-        }
-        /deep/ .el-card__body {
-            padding-top: 15px;
-        }
-        /deep/ .el-form-item__content {
-            line-height: 28px;
-        }
-        /deep/ .el-form-item {
-            margin-bottom: 7px;
-        }
-        /deep/ .el-button--mini {
-            padding: 7px 8px;
-        }
+    &.mobile {
+      padding: 60% 0;
+      @include flex-column;
+      @include sub-center;
+      justify-content: space-around;
+      .login-panel {
+        width: 95%;
+      }
     }
+    .login-text {
+      color: white;
+      .title {
+        font-size: 2.3rem;
+        margin-bottom: 1rem;
+      }
+      .message {
+        span {
+          display: block;
+        }
+        line-height: 2.5;
+      }
+    }
+    .login-panel {
+      width: 350px;
+    }
+    /deep/ .el-card__body {
+      padding-top: 15px;
+    }
+    /deep/ .el-form-item__content {
+      line-height: 28px;
+    }
+    /deep/ .el-form-item {
+      margin-bottom: 7px;
+    }
+    /deep/ .el-button--mini {
+      padding: 7px 8px;
+    }
+  }
 }
 .card-header {
-    justify-content: center;
+  justify-content: center;
 }
 </style>

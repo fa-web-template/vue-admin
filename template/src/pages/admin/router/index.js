@@ -6,43 +6,43 @@ import { fileListToArray } from '@/common/utils/readFile'
 import navSort from './navSort'
 
 const routers = fileListToArray(
-    require.context('./modules/', false, /\.js$/),
-    navSort
+  require.context('./modules/', false, /\.js$/),
+  navSort,
 )
 const routerConfig = {
-    // mode: process.env.NODE_ENV === 'development' ? 'history' : 'hash',
-    mode: 'history',
-    routes: [
-        {
-            path: '/',
-            redirect: '/login',
-            hidden: true
-        },
-        {
-            path: '/index',
-            // redirect: '/roleHome',
-            redirect: '/overview',
-            hidden: true
-        },
-        {
-            path: '/roleHome',
-            hidden: true
-        },
-        ...routers,
-        {
-            path: '/login',
-            component: () => import('../views/login'),
-            hidden: true,
-            meta: {
-                title: '后台登录'
-            }
-        },
-        {
-            path: '*',
-            redirect: '/error/404',
-            hidden: true
-        }
-    ]
+  // mode: process.env.NODE_ENV === 'development' ? 'history' : 'hash',
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      redirect: '/login',
+      hidden: true,
+    },
+    {
+      path: '/index',
+      // redirect: '/roleHome',
+      redirect: '/overview',
+      hidden: true,
+    },
+    {
+      path: '/roleHome',
+      hidden: true,
+    },
+    ...routers,
+    {
+      path: '/login',
+      component: () => import('../views/login'),
+      hidden: true,
+      meta: {
+        title: '后台登录',
+      },
+    },
+    {
+      path: '*',
+      redirect: '/error/404',
+      hidden: true,
+    },
+  ],
 }
 
 Vue.use(VueRouter)

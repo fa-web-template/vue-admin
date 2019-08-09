@@ -26,81 +26,81 @@
 import Fuse from 'fuse.js'
 import { mapGetters } from 'vuex'
 export default {
-    name: 'HeaderSearch',
-    data() {
-        return {
-            search: '',
-            options: [],
-            searchPool: [],
-            show: false,
-            fuse: undefined
-        }
-    },
-    computed: {
-        ...mapGetters(['searchList'])
-    },
-    watch: {
-        show(value) {
-            if (value) {
-                document.body.addEventListener('click', this.close)
-            } else {
-                document.body.removeEventListener('click', this.close)
-            }
-        }
-    },
-    created() {
-        this.initFuse(this.searchList)
-    },
-    methods: {
-        click() {
-            this.show = !this.show
-            if (this.show) {
-                this.$refs.headerSearchSelect &&
-                    this.$refs.headerSearchSelect.focus()
-            }
-        },
-        close() {
-            this.$refs.headerSearchSelect &&
-                this.$refs.headerSearchSelect.blur()
-            this.options = []
-            this.show = false
-        },
-        change(val) {
-            this.$router.push(val.path)
-            this.search = ''
-            this.options = []
-            this.$nextTick(() => {
-                this.show = false
-            })
-        },
-        initFuse(list) {
-            this.fuse = new Fuse(list, {
-                shouldSort: true,
-                threshold: 0.4,
-                location: 0,
-                distance: 100,
-                maxPatternLength: 32,
-                minMatchCharLength: 1,
-                keys: [
-                    {
-                        name: 'title',
-                        weight: 0.7
-                    },
-                    {
-                        name: 'path',
-                        weight: 0.3
-                    }
-                ]
-            })
-        },
-        querySearch(query) {
-            if (query !== '') {
-                this.options = this.fuse.search(query)
-            } else {
-                this.options = []
-            }
-        }
+  name: 'HeaderSearch',
+  data() {
+    return {
+      search: '',
+      options: [],
+      searchPool: [],
+      show: false,
+      fuse: undefined
     }
+  },
+  computed: {
+    ...mapGetters(['searchList'])
+  },
+  watch: {
+    show(value) {
+      if (value) {
+        document.body.addEventListener('click', this.close)
+      } else {
+        document.body.removeEventListener('click', this.close)
+      }
+    }
+  },
+  created() {
+    this.initFuse(this.searchList)
+  },
+  methods: {
+    click() {
+      this.show = !this.show
+      if (this.show) {
+        this.$refs.headerSearchSelect &&
+                    this.$refs.headerSearchSelect.focus()
+      }
+    },
+    close() {
+      this.$refs.headerSearchSelect &&
+                this.$refs.headerSearchSelect.blur()
+      this.options = []
+      this.show = false
+    },
+    change(val) {
+      this.$router.push(val.path)
+      this.search = ''
+      this.options = []
+      this.$nextTick(() => {
+        this.show = false
+      })
+    },
+    initFuse(list) {
+      this.fuse = new Fuse(list, {
+        shouldSort: true,
+        threshold: 0.4,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          {
+            name: 'title',
+            weight: 0.7
+          },
+          {
+            name: 'path',
+            weight: 0.3
+          }
+        ]
+      })
+    },
+    querySearch(query) {
+      if (query !== '') {
+        this.options = this.fuse.search(query)
+      } else {
+        this.options = []
+      }
+    }
+  }
 }
 </script>
 

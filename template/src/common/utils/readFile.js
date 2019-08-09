@@ -6,21 +6,21 @@
  * @returns {Object}
  */
 export function fileListToObject(modulesFiles) {
-    return modulesFiles.keys().reduce((modules, modulePath) => {
-        // set './app.js' => 'app'
-        const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
-        const value = modulesFiles(modulePath)
-        modules[moduleName] = value.default
-        return modules
-    }, {})
+  return modulesFiles.keys().reduce((modules, modulePath) => {
+    // set './app.js' => 'app'
+    const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
+    const value = modulesFiles(modulePath)
+    modules[moduleName] = value.default
+    return modules
+  }, {})
 }
 
 const sortKey = (keys, sorts) => {
-    return keys.sort((a, b) => {
-        const aSort = sorts.indexOf(a)
-        const bSort = sorts.indexOf(b)
-        return aSort !== -1 ? aSort - bSort : -1
-    })
+  return keys.sort((a, b) => {
+    const aSort = sorts.indexOf(a)
+    const bSort = sorts.indexOf(b)
+    return aSort !== -1 ? aSort - bSort : -1
+  })
 }
 
 /**
@@ -32,12 +32,12 @@ const sortKey = (keys, sorts) => {
  * @returns {Array}
  */
 export function fileListToArray(modulesFiles, sorts = null) {
-    let keys = modulesFiles.keys()
-    if (sorts) {
-        keys = sortKey(keys, sorts)
-    }
-    return keys.map(modulePath => {
-        const value = modulesFiles(modulePath)
-        return value.default[0]
-    }, {})
+  let keys = modulesFiles.keys()
+  if (sorts) {
+    keys = sortKey(keys, sorts)
+  }
+  return keys.map(modulePath => {
+    const value = modulesFiles(modulePath)
+    return value.default[0]
+  }, {})
 }

@@ -1,4 +1,4 @@
-<template>
+  <template>
   <v-card :title="title"
           class="search">
     <div slot="toolbar"
@@ -28,40 +28,40 @@
 import BaseForm from '@/common/components/BaseForm'
 import ResponsiveSize from '@/common/mixins/ResponsiveSize'
 export default {
-    name: 'SimpSearch',
-    components: {
-        BaseForm
+  name: 'SimpSearch',
+  components: {
+    BaseForm
+  },
+  mixins: [ResponsiveSize],
+  props: {
+    title: {
+      type: String,
+      default: '搜索'
     },
-    mixins: [ResponsiveSize],
-    props: {
-        title: {
-            type: String,
-            default: '搜索'
-        },
-        submitBtnText: {
-            type: String,
-            default: '搜索'
-        },
-        module: {
-            type: String,
-            required: true
-        }
+    submitBtnText: {
+      type: String,
+      default: '搜索'
     },
-    computed: {
-        moduleData() {
-            return this._.get(this.$v_data, this.module).search
-        }
-    },
-    methods: {
-        handleSubmit() {
-            this.$refs.baseForm.submit()
-        },
-        handleReset() {
-            this.$refs.baseForm.resetForm()
-        },
-        submit(data) {
-            this.$emit('submit', data)
-        }
+    module: {
+      type: String,
+      required: true
     }
+  },
+  computed: {
+    moduleData() {
+      return this._.get(this.$v_data, this.module).search
+    }
+  },
+  methods: {
+    handleSubmit() {
+      this.$refs.baseForm.submit()
+    },
+    handleReset() {
+      this.$refs.baseForm.resetForm()
+    },
+    submit(data) {
+      this.$emit('submit', data)
+    }
+  }
 }
 </script>

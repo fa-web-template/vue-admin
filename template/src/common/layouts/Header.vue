@@ -43,80 +43,80 @@ import HeaderSearch from './components/HeaderSearch'
 import { success } from '@/common/utils/message'
 import { mapActions, mapGetters } from 'vuex'
 export default {
-    components: {
-        Hamburger,
-        Screenfull,
-        Breadcrumb,
-        HeaderSearch
-    },
-    props: {
-        dropdownMenu: {
-            type: Array,
-            default: Array
-        }
-    },
-    data: () => ({
-        innerDropdownMenu: []
-    }),
-    computed: {
-        ...mapGetters(['username', 'device', 'sidebar', 'showAvatar'])
-    },
-    mounted() {
-        this.innerDropdownMenu = [
-            ...this.dropdownMenu,
-            {
-                path: '/me/profile',
-                label: '用户信息'
-            },
-            {
-                path: '/me/password',
-                label: '修改密码'
-            },
-            {
-                callback: this.handleLogout,
-                label: '退出登陆'
-            }
-        ]
-    },
-    methods: {
-        ...mapActions('auth_user', ['logout']),
-        async handleLogout() {
-            await this.logout()
-            await success('登出成功！')
-            this.$router.push('/login')
-        },
-        toggleSidebar() {
-            this.$store.dispatch('app/toggleSidebar')
-        }
+  components: {
+    Hamburger,
+    Screenfull,
+    Breadcrumb,
+    HeaderSearch
+  },
+  props: {
+    dropdownMenu: {
+      type: Array,
+      default: Array
     }
+  },
+  data: () => ({
+    innerDropdownMenu: []
+  }),
+  computed: {
+    ...mapGetters(['username', 'device', 'sidebar', 'showAvatar'])
+  },
+  mounted() {
+    this.innerDropdownMenu = [
+      ...this.dropdownMenu,
+      {
+        path: '/me/profile',
+        label: '用户信息'
+      },
+      {
+        path: '/me/password',
+        label: '修改密码'
+      },
+      {
+        callback: this.handleLogout,
+        label: '退出登陆'
+      }
+    ]
+  },
+  methods: {
+    ...mapActions('auth_user', ['logout']),
+    async handleLogout() {
+      await this.logout()
+      await success('登出成功！')
+      this.$router.push('/login')
+    },
+    toggleSidebar() {
+      this.$store.dispatch('app/toggleSidebar')
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .app-header {
-    @include padding-x;
-    @include wh(100%, $app-header-height);
+  @include padding-x;
+  @include wh(100%, $app-header-height);
+  @include flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $app-header-bgcolor;
+  color: $app-header-color;
+  .left-menu {
+    @include sub-center;
+    .breadcrumb-container {
+      margin-left: 8px;
+    }
+  }
+  .right-menu {
     @include flex;
-    align-items: center;
-    justify-content: space-between;
-    background: $app-header-bgcolor;
-    color: $app-header-color;
-    .left-menu {
-        @include sub-center;
-        .breadcrumb-container {
-            margin-left: 8px;
-        }
+    height: 100%;
+    .right-menu-item {
+      @include no-user-select;
+      @include sub-center;
+      @include padding;
+      color: $app-header-color;
+      cursor: pointer;
     }
-    .right-menu {
-        @include flex;
-        height: 100%;
-        .right-menu-item {
-            @include no-user-select;
-            @include sub-center;
-            @include padding;
-            color: $app-header-color;
-            cursor: pointer;
-        }
-    }
+  }
 }
 </style>

@@ -34,6 +34,19 @@
     @include no-user-select;
 }
 
+.avatar-uploader {
+    @include flex;
+}
+.el-upload-list--picture-card .el-upload-list__item,
+.el-upload--picture-card {
+    @include wh($upload-size);
+    line-height: $upload-size;
+}
+
+.el-upload-dragger {
+    height: 100% !important;
+}
+
 .toolbar {
     padding: 3px 0;
     display: flex;
@@ -158,6 +171,7 @@
 }
 
 .el-date-editor {
+    .el-input__icon,
     .el-icon-date {
         display: none;
     }
@@ -231,4 +245,19 @@
 
 .full-tab {
     @include full-tab;
+}
+
+.card-body-scroll_y {
+    @include card-body-scroll_y;
+}
+
+.el-image-viewer__mask {
+    opacity: 0.8;
+}
+.el-image-viewer__close {
+    color: #eee;
+}
+
+.el-pager {
+    height: 22px;
 }

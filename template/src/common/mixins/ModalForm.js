@@ -1,34 +1,34 @@
-import Modal from '@/common/components/Modal'
+import VModal from '@/common/components/VModal'
 import ResponsiveSize from '@/common/mixins/ResponsiveSize'
 export default {
-    mixins: [ResponsiveSize],
-    components: {
-        Modal
+  mixins: [ResponsiveSize],
+  components: {
+    VModal
+  },
+  props: {
+    btnStyle: {
+      type: Object,
+      default: () => {
+        return {}
+      }
     },
-    props: {
-        btnStyle: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        },
-        btnIcon: {
-            type: String,
-            default: ''
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        }
+    btnIcon: {
+      type: String,
+      default: ''
     },
-    methods: {
-        baseFormSubmit() {
-            this.$refs.baseForm.submit()
-        },
-        afterSuccess() {
-            this.$emit('get-data')
-            this.$emit('refresh')
-            this.$refs.modal.hidden()
-        }
+    disabled: {
+      type: Boolean,
+      default: false
     }
+  },
+  methods: {
+    baseFormSubmit() {
+      this.$refs.baseForm.submit()
+    },
+    afterSuccess() {
+      this.$emit('get-data')
+      this.$emit('refresh')
+      this.$refs.modal.hidden()
+    }
+  }
 }

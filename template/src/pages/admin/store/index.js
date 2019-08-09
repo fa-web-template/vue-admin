@@ -14,15 +14,15 @@ import getters from './getters'
 Vue.use(vuex)
 
 export default new vuex.Store({
-    modules,
-    actions,
-    getters,
-    plugins: [
-        createPersist({
-            namespace: process.env.APP_NAME + '-admin',
-            initialState: {},
-            // one day
-            expires: 1 * 24 * 60 * 60 * 1e3
-        })
-    ]
+  modules,
+  actions,
+  getters,
+  plugins: [
+    createPersist({
+      namespace: process.env.APP_NAME + '-admin',
+      initialState: {},
+      // one day
+      expires: 1 * 24 * 60 * 60 * 1e3
+    })
+  ]
 })

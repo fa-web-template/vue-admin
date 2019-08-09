@@ -56,7 +56,7 @@
     <!-- datetimerange -->
     <el-date-picker v-else-if="item.type === 'datetimerange'"
                     v-model="val"
-                    :type="_.get(item,'meta.type','daterange')"
+                    :type="_.get(item,'meta.type','datetime')"
                     :value-format="_.get(item,'meta.format','yyyy-MM-dd HH:mm:ss')"
                     range-separator="至"
                     start-placeholder="开始日期"
@@ -84,6 +84,11 @@
       <upload-control :item="item"
                       :model.sync="val" />
     </template>
+    <!-- upload-pic -->
+    <template v-else-if="item.type === 'pic'">
+      <upload-pic-control :item="item"
+                          :model.sync="val" />
+    </template>
     <!-- switch -->
     <el-switch v-else-if="item.type === 'switch'"
                v-model="val"
@@ -98,11 +103,32 @@
                 :placeholder="getPlaceholder()"
                 :options="codemirrorOptions"
                 class="codemirror" />
+    <!-- location -->
+    <location-control v-else-if="item.type ==='location'"
+                      :model.sync="val"
+                      :size="respFormControlSize"
+                      :placeholder="getPlaceholder()" />
+    <!-- select table -->
+    <select-table v-else-if="item.type ==='select-table'"
+                  :model.sync="val"
+                  :size="respFormControlSize"
+                  :multiple="_.get(item,'meta.multiple')"
+                  :module="_.get(item,'meta.module')"
+                  :title="_.get(item,'meta.title','列表')"
+                  :table-title="_.get(item,'meta.table.title','列表')"
+                  :table-columns="_.get(item,'meta.table.columns',[])"
+                  :before-submit="_.get(item,'meta.beforeSubmit',data=>data)"
+                  :placeholder="getPlaceholder()" />
+    <!-- rich text -->
+    <rich-text v-else-if="item.type==='richtext'"
+               ref="richText"
+               v-model=" val" />
     <!-- default -->
     <el-input v-else
               v-model="val"
               :type="item.type"
               :placeholder="getPlaceholder()"
+              :clearable="_.get(item,'meta.clearable',true)"
               :rows="_.get(item,'meta.row')"
               :min="_.get(item,'meta.min')"
               :max="_.get(item,'meta.max')"
@@ -121,152 +147,168 @@
   </div>
 </template>
 <script>
-import UploadControl from './UploadControl'
+import LocationControl from './FormControls/LocationControl'
+import UploadControl from './FormControls/UploadControl'
+import UploadPicControl from './FormControls/UploadPicControl'
+import RichText from './FormControls/Tinymce/'
+import SelectTable from './FormControls/SelectTable'
 import ResponsiveSize from '@/common/mixins/ResponsiveSize'
 import { codemirror } from 'vue-codemirror-lite'
 import 'codemirror/addon/display/placeholder.js'
 import 'codemirror/mode/htmlmixed/htmlmixed'
 export default {
-    name: 'FormControl',
-    components: {
-        UploadControl,
-        codemirror
+  name: 'VFormItemControl',
+  components: {
+    LocationControl,
+    UploadControl,
+    UploadPicControl,
+    codemirror,
+    RichText,
+    SelectTable
+  },
+  mixins: [ResponsiveSize],
+  props: {
+    item: {
+      type: Object,
+      required: true
     },
-    mixins: [ResponsiveSize],
-    props: {
-        item: {
-            type: Object,
-            required: true
-        },
-        model: {
-            type: [String, Number, Boolean, File, Object, Array],
-            required: true
-        }
-    },
-    data: () => ({
-        loaded: false,
-        val: '',
-        options: [],
-        codemirrorOptions: {
-            mode: 'htmlmixed',
-            tabSize: 2,
-            lineNumbers: true,
-            lineWrapping: false
-        }
-    }),
-    computed: {
-        getActive() {
-            return this._.get(this.item, 'meta.active') !== void 0
-                ? this.meta.item.active
-                : true
-        },
-        getInactive() {
-            return this._.get(this.item, 'meta.inactive') !== void 0
-                ? this.item.meta.inactive
-                : false
-        }
-    },
-    watch: {
-        val(val) {
-            if (this._.isNull(val)) {
-                val = ''
-            }
-            this.$emit('update:model', val)
-        },
-        model(val) {
-            if (this.val !== val) {
-                this.setVal(val)
-            }
-        }
-    },
-    mounted() {
-        this.setVal(this.model)
-        this.codemirrorOptions.placeholder = this.getPlaceholder()
-        this.loaded = true
-    },
-    methods: {
-        submit() {
-            if (this._.get(this.item, 'meta.disabledEvent')) return
-            this.$emit('submit')
-        },
-        setVal(val) {
-            if (val === '') {
-                this.val = val
-                return
-            }
-            const type = this._.get(this.item, 'meta.type')
-            switch (type) {
-                case 'number':
-                    this.val = Number(val)
-                    break
-                default:
-                    this.val = val
-                    break
-            }
-        },
-        changeSelect() {
-            if (!this._.get(this.item, 'meta.enableEvent', false)) return
-            setTimeout(() => {
-                this.$emit('submit')
-            }, 20)
-        },
-        getPlaceholder(type = '输入') {
-            return (
-                this._.get(this.item, 'meta.placeholder') ||
-                `请${type}` + this.item.label
-            )
-        },
-        getOptions() {
-            if (this._.get(this.item, 'meta.options')) {
-                return this.item.meta.options
-            }
-            const module = this._.get(this.item, 'meta.option_module')
-            return this.$store.state[module].options
-        }
+    model: {
+      type: [String, Number, Boolean, File, Object, Array],
+      required: true
     }
+  },
+  data: () => ({
+    loaded: false,
+    val: '',
+    options: [],
+    codemirrorOptions: {
+      mode: 'htmlmixed',
+      tabSize: 2,
+      lineNumbers: true,
+      lineWrapping: false
+    }
+  }),
+  computed: {
+    getActive() {
+      return this._.get(this.item, 'meta.active') !== void 0
+        ? this.item.meta.active
+        : true
+    },
+    getInactive() {
+      return this._.get(this.item, 'meta.inactive') !== void 0
+        ? this.item.meta.inactive
+        : false
+    }
+  },
+  watch: {
+    val(val) {
+      if (this._.isNull(val)) {
+        val = ''
+      }
+      this.$emit('update:model', val)
+    },
+    model(val) {
+      if (!this._.isEqual(this.val, val)) {
+        this.resetRichText(val)
+        this.setVal(val)
+      }
+    }
+  },
+  mounted() {
+    this.setVal(this.model)
+    this.codemirrorOptions.placeholder = this.getPlaceholder()
+    this.loaded = true
+  },
+  methods: {
+    submit() {
+      if (this._.get(this.item, 'meta.disabledEvent')) return
+      this.$emit('submit')
+    },
+    resetRichText(val) {
+      if (this.$refs.richText) {
+        setTimeout(() => {
+          this.$refs.richText.setContent(val)
+        }, 300)
+      }
+    },
+    setVal(val) {
+      if (val === '') {
+        this.val = val
+        return
+      }
+      const type = this._.get(this.item, 'meta.type')
+      switch (type) {
+        case 'number':
+          this.val = Number(val)
+          break
+        default:
+          this.val = val
+          break
+      }
+    },
+    changeSelect() {
+      if (!this._.get(this.item, 'meta.enableEvent', false)) return
+      setTimeout(() => {
+        this.$emit('submit')
+      }, 20)
+    },
+    getPlaceholder(type = '输入') {
+      return (
+        this._.get(this.item, 'meta.placeholder') ||
+        `请${type}` + this.item.label
+      )
+    },
+    getOptions() {
+      if (this._.get(this.item, 'meta.options')) {
+        return this.item.meta.options
+      }
+      const module = this._.get(this.item, 'meta.option_module')
+      return this.$store.state[module].options
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
 .el-form-item__content div:not(.el-input-group) {
-    display: block;
+  display: block;
 }
 .el-form-item {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 .icon {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 .is-error {
-    .codemirror {
-        border-color: #f56c6c;
-    }
+  .codemirror {
+    border-color: #f56c6c;
+  }
 }
 .codemirror {
-    padding: 1px;
-    border: 1px solid #dcdfe6;
-    border-radius: 4px;
-    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    line-height: 17px;
+  padding: 1px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  line-height: 17px;
 }
 .create-select {
-    line-height: 2.5;
-    text-align: center;
-    a {
-        margin-left: 5px;
-        color: $color-primary;
-    }
+  line-height: 2.5;
+  text-align: center;
+  a {
+    margin-left: 5px;
+    color: $color-primary;
+  }
 }
 </style>
 <style lang="scss">
 .CodeMirror pre.CodeMirror-placeholder {
-    color: #c0c4cc;
-    font: 400 13.3333px Arial;
+  color: #c0c4cc;
+  font: 400 13.3333px Arial;
 }
 .CodeMirror {
-    padding: 0;
-    height: 100%;
+  padding: 0;
+  height: 100%;
 }
 .CodeMirror pre {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 </style>

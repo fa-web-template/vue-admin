@@ -2,6 +2,7 @@
   <baseForm ref="baseForm"
             :submit-btn-text="submitBtnText"
             :btn-disabled="btnDisabled"
+            :label-width="labelWidth"
             :form-item="formItem"
             :form-data="current"
             @submit="submit">
@@ -11,7 +12,7 @@
 <script>
 import Edit from '@/common/mixins/Edit'
 export default {
-    name: 'Edit',
-    mixins: [Edit]
+  name: 'BaseEdit',
+  mixins: [Edit]
 }
 </script>
