@@ -1,7 +1,7 @@
 <template>
   <div class="upload-pic-container">
     <el-upload ref="upload"
-               :class="['avatar-uploader',{'hidden-upload':hiddenUpload}]"
+               :class="['avatar-uploader',{ 'hidden-upload': hiddenUpload }]"
                action=""
                list-type="picture-card"
                :limit="limit"
@@ -44,9 +44,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .hidden-upload {
-    /deep/ .el-upload--picture-card {
-        display: none;
-    }
+  /deep/ .el-upload--picture-card {
+    display: none;
+  }
 }
 </style>
 

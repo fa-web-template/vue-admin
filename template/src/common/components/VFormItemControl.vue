@@ -18,7 +18,7 @@
                 slot="empty">
         <div class="create-select">
           <span>该\{{ item.label }}不存在</span>
-          <router-link :to="item.meta.create_link+'?redirect='+$route.path">点我创建</router-link>
+          <router-link :to="item.meta.create_link + '?redirect=' + $route.path">点我创建</router-link>
         </div>
       </template>
     </el-select>
@@ -104,12 +104,12 @@
                 :options="codemirrorOptions"
                 class="codemirror" />
     <!-- location -->
-    <location-control v-else-if="item.type ==='location'"
+    <location-control v-else-if="item.type === 'location'"
                       :model.sync="val"
                       :size="respFormControlSize"
                       :placeholder="getPlaceholder()" />
     <!-- select table -->
-    <select-table v-else-if="item.type ==='select-table'"
+    <select-table v-else-if="item.type === 'select-table'"
                   :model.sync="val"
                   :size="respFormControlSize"
                   :multiple="_.get(item,'meta.multiple')"
@@ -117,10 +117,10 @@
                   :title="_.get(item,'meta.title','列表')"
                   :table-title="_.get(item,'meta.table.title','列表')"
                   :table-columns="_.get(item,'meta.table.columns',[])"
-                  :before-submit="_.get(item,'meta.beforeSubmit',data=>data)"
+                  :before-submit="_.get(item,'meta.beforeSubmit',data => data)"
                   :placeholder="getPlaceholder()" />
     <!-- rich text -->
-    <rich-text v-else-if="item.type==='richtext'"
+    <rich-text v-else-if="item.type === 'richtext'"
                ref="richText"
                v-model=" val" />
     <!-- default -->
@@ -190,14 +190,10 @@ export default {
   }),
   computed: {
     getActive() {
-      return this._.get(this.item, 'meta.active') !== void 0
-        ? this.item.meta.active
-        : true
+      return this._.get(this.item, 'meta.active', true)
     },
     getInactive() {
-      return this._.get(this.item, 'meta.inactive') !== void 0
-        ? this.item.meta.inactive
-        : false
+      return this._.get(this.item, 'meta.inactive', false)
     }
   },
   watch: {

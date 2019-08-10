@@ -25,8 +25,8 @@ export default function({
       .then(() => {
         resolve()
       })
-      .catch(() => {
-        reject()
+      .catch(e => {
+        reject(e)
       })
   })
 }

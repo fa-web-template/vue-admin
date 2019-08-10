@@ -19,7 +19,7 @@
                      :get-form-data="$v_data[module].login.data"
                      :show-label="false"
                      btn-size="mini"
-                     :btn-style="{width:'100%'}"
+                     :btn-style="{ width: '100%' }"
                      :need-reset-btn="false"
                      submit-btn-text="登录"
                      @submit="submit" />

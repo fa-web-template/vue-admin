@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <router-view v-if="isRouterAlive" />
+    <router-view v-if="isRouterAlive"
+                 :key="$route.fullPath" />
   </div>
 </template>
 <script>
@@ -107,7 +108,9 @@ export default {
     },
     reload() {
       this.isRouterAlive = false
-      this.$nextTick(() => (this.isRouterAlive = true))
+      this.$nextTick(() => {
+        this.isRouterAlive = true
+      })
     }
   }
 }

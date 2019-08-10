@@ -10,7 +10,7 @@
         <v-card :need-header="false">
           <div class="info-box">
             <div class="icon-container"
-                 :style="{background:item.color}">
+                 :style="{ background: item.color }">
               <i :class="['icon',item.icon]"></i>
             </div>
             <div class="content">
@@ -37,7 +37,7 @@ export default {
   components: { CountTo },
   filters: {
     number(value) {
-      return parseInt(value)
+      return parseInt(value, 10)
     }
   },
   mixins: [ResponsiveSize],

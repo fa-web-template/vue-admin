@@ -45,7 +45,7 @@ export default {
   }),
   computed: {
     strVal() {
-      return '' + this.model
+      return String(this.model)
     }
   },
   methods: {
@@ -62,9 +62,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .search {
-    height: 500px;
-    /deep/ .amap {
-        height: 100%;
-    }
+  height: 500px;
+  /deep/ .amap {
+    height: 100%;
+  }
 }
 </style>

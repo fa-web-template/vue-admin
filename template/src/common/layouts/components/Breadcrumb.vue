@@ -3,7 +3,7 @@
                  separator-class="el-icon-arrow-right">
     <el-breadcrumb-item v-for="(item,index) in levelList"
                         :key="item.path">
-      <span v-if="item.redirect==='noredirect'||index==levelList.length-1"
+      <span v-if="item.redirect === 'noredirect' || index === levelList.length - 1"
             class="no-redirect">\{{
         item.meta.title }}</span>
       <a v-else

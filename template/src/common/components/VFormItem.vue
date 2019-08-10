@@ -57,10 +57,10 @@
         <el-form-item v-for="(subItem) in item.items"
                       :key="getKey(subItem)"
                       :label="subItem.label"
-                      :prop="spliceKey +'.'+ subItem.key"
+                      :prop="spliceKey + '.' + subItem.key"
                       :class="getClassName(subItem)"
                       :style="getStyle(subItem)">
-          <span v-show="false">\{{ setModel(spliceKey +'.'+ subItem.key) }}</span>
+          <span v-show="false">\{{ setModel(spliceKey + '.' + subItem.key) }}</span>
           <v-form-item-control :item="subItem"
                                :model.sync="model[subItem.key]"
                                @submit="submit" />

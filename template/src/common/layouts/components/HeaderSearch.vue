@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'show':show}"
+  <div :class="{ 'show': show }"
        class="header-search">
     <div class-name="search-icon"
          @click.stop="click">
@@ -55,13 +55,11 @@ export default {
     click() {
       this.show = !this.show
       if (this.show) {
-        this.$refs.headerSearchSelect &&
-                    this.$refs.headerSearchSelect.focus()
+        this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.focus()
       }
     },
     close() {
-      this.$refs.headerSearchSelect &&
-                this.$refs.headerSearchSelect.blur()
+      this.$refs.headerSearchSelect && this.$refs.headerSearchSelect.blur()
       this.options = []
       this.show = false
     },
@@ -106,40 +104,40 @@ export default {
 
 <style lang="scss" scoped>
 .header-search {
-    .search-icon {
-        font-size: $header-icon-size;
-        padding: $header-icon-padding;
-        cursor: pointer;
-    }
+  .search-icon {
+    font-size: $header-icon-size;
+    padding: $header-icon-padding;
+    cursor: pointer;
+  }
 
+  .header-search-select {
+    font-size: 18px;
+    transition: width 0.2s;
+    width: 0;
+    overflow: hidden;
+    background: transparent;
+    border-radius: 0;
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+
+    /deep/ .el-input__inner {
+      border: 0;
+      border-bottom: 1px solid #d9d9d9;
+      padding-left: 0.5em;
+      padding-right: 0;
+      box-shadow: none !important;
+      background: transparent;
+      vertical-align: middle;
+      color: inherit;
+    }
+  }
+
+  &.show {
     .header-search-select {
-        font-size: 18px;
-        transition: width 0.2s;
-        width: 0;
-        overflow: hidden;
-        background: transparent;
-        border-radius: 0;
-        display: inline-block;
-        vertical-align: middle;
-        color: white;
-
-        /deep/ .el-input__inner {
-            border: 0;
-            border-bottom: 1px solid #d9d9d9;
-            padding-left: 0.5em;
-            padding-right: 0;
-            box-shadow: none !important;
-            background: transparent;
-            vertical-align: middle;
-            color: inherit;
-        }
+      width: 180px;
+      margin-left: 10px;
     }
-
-    &.show {
-        .header-search-select {
-            width: 180px;
-            margin-left: 10px;
-        }
-    }
+  }
 }
 </style>

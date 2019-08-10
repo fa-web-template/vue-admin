@@ -71,7 +71,7 @@ export default {
     }
   },
   async created() {
-    await this.$nextTick(async() => {
+    await this.$nextTick(async () => {
       await this.init()
       Object.keys(this.$refs).forEach(item => {
         if (item.indexOf('chart') === 0) {

@@ -39,14 +39,14 @@ export default {
 
       if (styL.includes('%')) {
         styL =
-                    +document.body.clientWidth *
-                    (+styL.replace(/\%/g, '') / 100)
+                    Number(document.body.clientWidth) *
+                    (Number(styL.replace(/\%/g, '')) / 100)
         styT =
-                    +document.body.clientHeight *
-                    (+styT.replace(/\%/g, '') / 100)
+                    Number(document.body.clientHeight) *
+                    (Number(styT.replace(/\%/g, '')) / 100)
       } else {
-        styL = +styL.replace(/\px/g, '')
-        styT = +styT.replace(/\px/g, '')
+        styL = Number(styL.replace(/\px/g, ''))
+        styT = Number(styT.replace(/\px/g, ''))
       }
 
       document.onmousemove = function(e) {

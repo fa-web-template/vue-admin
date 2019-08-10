@@ -1,18 +1,17 @@
-import { validPlusNumber } from '@/common/utils/validate'
-import { validPhone } from '@/common/utils/validate'
+import { validPlusNumber, validPhone } from '@/common/utils/validate'
 export default {
   /**
-     *
-     *
-     * @param {*} [{
-     *         label = '',
-     *         message = '',
-     *         required = true,
-     *         trigger = 'blur',
-     *         type = null
-     *     }={}]
-     * @returns {array}
-     */
+   *
+   *
+   * @param {*} [{
+   *         label = '',
+   *         message = '',
+   *         required = true,
+   *         trigger = 'blur',
+   *         type = null
+   *     }={}]
+   * @returns {array}
+   */
   required({
     label = '',
     message = '',
@@ -33,11 +32,11 @@ export default {
     return [res]
   },
   /**
-     *
-     *
-     * @param {*} [{ min = null, max = null, label = '', trigger = 'blur' }={}]
-     * @returns {array}
-     */
+   *
+   *
+   * @param {*} [{ min = null, max = null, label = '', trigger = 'blur' }={}]
+   * @returns {array}
+   */
   between({ min = null, max = null, label = '', trigger = 'blur' } = {}) {
     const base_message = `${label}长度必须`
     let message = ''
@@ -58,11 +57,11 @@ export default {
     ]
   },
   /**
-     *
-     *
-     * @param {*} [{ label = '', trigger = 'blur' }={}]
-     * @returns {array}
-     */
+   *
+   *
+   * @param {*} [{ label = '', trigger = 'blur' }={}]
+   * @returns {array}
+   */
   plusNumber({ label = '', trigger = 'blur' } = {}) {
     return [
       {
@@ -78,11 +77,11 @@ export default {
     ]
   },
   /**
-     *
-     *
-     * @param {*} [{ trigger = 'blur' }={}]
-     * @returns {array}
-     */
+   *
+   *
+   * @param {*} [{ trigger = 'blur' }={}]
+   * @returns {array}
+   */
   phoneNumber({ trigger = 'blur' } = {}) {
     return [
       {

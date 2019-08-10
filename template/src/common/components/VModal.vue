@@ -4,7 +4,7 @@
     <slot name="custom-open-area"
           :visible="visible"></slot>
     <div style="display:inline;"
-         @click="visible()">
+         @click="visible">
       <slot v-if="needOpenBtn"
             name="btn">
         <el-button :size="btnSize"

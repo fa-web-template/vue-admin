@@ -29,8 +29,8 @@ export function numberFormat(num) {
  * @returns {object}
  */
 export function cover(object1, object2, callback = null) {
-  const a = Object.assign({}, object1)
-  const b = Object.assign({}, object2)
+  const a = { ...object1 }
+  const b = { ...object2 }
   for (const key in a) {
     if (b[key] !== undefined) {
       if (callback) {

@@ -63,7 +63,7 @@ export default {
     }
   },
   async mounted() {
-    await this.$nextTick(async() => {
+    await this.$nextTick(async () => {
       await this.handleSubmit()
       this.$refs.chart_trend.echarts.resize()
       this.makeLoaded()

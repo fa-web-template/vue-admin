@@ -36,7 +36,7 @@ export default {
       this.$router.push('/login')
     },
     profileData() {
-      return Object.assign({}, this.profile)
+      return { ...this.profile }
     }
   }
 }

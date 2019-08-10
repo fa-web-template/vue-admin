@@ -1,7 +1,7 @@
 <template>
-  <div :class="{fullscreen:fullscreen}"
+  <div :class="{ fullscreen: fullscreen }"
        class="tinymce-container"
-       :style="{width:containerWidth}">
+       :style="{ width: containerWidth }">
     <textarea :id="tinymceId"
               class="tinymce-textarea" />
     <div class="editor-custom-btn-container">
@@ -33,8 +33,8 @@ export default {
       default: function() {
         return (
           'vue-tinymce-' +
-          +new Date() +
-          ((Math.random() * 1000).toFixed(0) + '')
+          Number(new Date()) +
+          String((Math.random() * 1000).toFixed(0))
         )
       }
     },
