@@ -2,7 +2,7 @@
 
 > A Vue admin project template
 
-## Using
+## Usage
 
 ```
 npm install fa-cli -g
@@ -11,6 +11,11 @@ cd my-project
 npm install
 npm run server
 ```
+
+## Other tools
+
+- [FA CLI](https://github.com/gd4Ark/fa-cli)
+- [ESLint Config](https://github.com/gd4Ark/eslint-config-fa)
 
 ## End
 
