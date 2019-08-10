@@ -10,9 +10,9 @@
   </not-sub-router>
 </template>
 <script>
-const __module = '{{module}}'
+const __module = '{{ name }}'
 import BaseSearch from '@/common/components/BaseSearch'
-import sTable from './components/UsersTable'
+import sTable from './components/{{upperFirst name }}Table'
 import { mapActions } from 'vuex'
 import syncChange from '@/common/mixins/syncChange'
 export default {
