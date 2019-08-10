@@ -32,7 +32,7 @@ export default [
           },
           {
             path: ':id/edit',
-            name: 'orderEdit',
+            name: '{{ name }}Edit',
             component: () =>
               import('@/pages/admin/views/{{ name }}/children/Edit'),
             hidden: true,

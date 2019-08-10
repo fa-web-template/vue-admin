@@ -58,13 +58,13 @@ function getFileTplList(answers, user_path) {
   const { name, page, hasSub } = answers
   const first_upper_name = name[0].toUpperCase() + name.slice(1)
   const hasSubStr = hasSub ? 'has_sub_' : ''
-  return [
+  const res = [
     {
       from: join(generator_path, 'data/tpl.js'),
       to: join(user_path, `src/common/data/modules/${name}.js`)
     },
     {
-      from: join(generator_path, `router/${hasSubStr}tpl.js'`),
+      from: join(generator_path, `router/${hasSubStr}tpl.js`),
       to: join(user_path, `src/pages/${page}/router/modules/${name}.js`)
     },
     {
@@ -83,6 +83,19 @@ function getFileTplList(answers, user_path) {
       )
     }
   ]
+  if (hasSub) {
+    res.push(
+      {
+        from: join(generator_path, `view/children/Add.vue`),
+        to: join(user_path, `src/pages/${page}/views/${name}/children/Add.vue`)
+      },
+      {
+        from: join(generator_path, `view/children/Edit.vue`),
+        to: join(user_path, `src/pages/${page}/views/${name}/children/Edit.vue`)
+      }
+    )
+  }
+  return res
 }
 
 module.exports = {
