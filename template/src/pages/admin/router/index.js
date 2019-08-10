@@ -7,7 +7,7 @@ import navSort from './navSort'
 
 const routers = fileListToArray(
   require.context('./modules/', false, /\.js$/),
-  navSort,
+  navSort
 )
 const routerConfig = {
   // mode: process.env.NODE_ENV === 'development' ? 'history' : 'hash',
@@ -16,33 +16,33 @@ const routerConfig = {
     {
       path: '/',
       redirect: '/login',
-      hidden: true,
+      hidden: true
     },
     {
       path: '/index',
       // redirect: '/roleHome',
       redirect: '/overview',
-      hidden: true,
+      hidden: true
     },
     {
       path: '/roleHome',
-      hidden: true,
+      hidden: true
     },
     ...routers,
     {
       path: '/login',
-      component: () => import('../views/login'),
+      component: () => import('@/common/layouts/Login.vue'),
       hidden: true,
       meta: {
-        title: '后台登录',
-      },
+        title: '后台登录'
+      }
     },
     {
       path: '*',
       redirect: '/error/404',
-      hidden: true,
-    },
-  ],
+      hidden: true
+    }
+  ]
 }
 
 Vue.use(VueRouter)

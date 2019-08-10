@@ -1,4 +1,9 @@
 {
-    "name": "vue-admin",
-    "pages": []
+  "name": "vue-admin",
+  "pages": [
+    { "page": "admin", "name": "overview", "title": "数据概览" },
+    { "page": "admin", "name": "me", "title": "我的" },
+    { "page": "admin", "name": "error", "title": "错误页" },
+    { "page": "admin", "name": "login", "title": "登陆" }
+  ]
 }

@@ -3,12 +3,11 @@
           class="table-card">
     <div slot="toolbar"
          class="toolbar">
-      <modal-add :btn-size="respBtnSize"
-                 :form-item="$v_data[module].common.item"
-                 :get-form-data="$v_data[module].common.data"
-                 :module="module"
-                 title="添加{{ title }}"
-                 @get-data="getData" />
+      <el-button type="primary"
+                 :size="respBtnSize"
+                 @click="toAdd">
+        添加
+      </el-button>
       <el-button :size="respBtnSize"
                  type="danger"
                  @click="handleDelete(multipleSelection)">
@@ -36,12 +35,10 @@
                          min-width="130"
                          align="center">
           <template slot-scope="scope">
-            <modal-edit :title=" `编辑{{ title }} ${scope.row.name} 中`"
-                        :form-item="$v_data[module].common.item"
-                        :current="scope.row"
-                        :module="module"
-                        btn-size="mini"
-                        @get-data="getData" />
+            <el-button :size="respBtnSize"
+                       @click="toEdit(scope.row.id)">
+              编辑
+            </el-button>
             <el-button size="mini"
                        type="danger"
                        @click="handleDelete([scope.row.id])">
@@ -63,17 +60,13 @@
 const allOptions = []
 import VTable from '@/common/components/VTable'
 import Pagination from '@/common/components/Pagination'
-import ModalEdit from '@/common/components/ModalEdit'
-import ModalAdd from '@/common/components/ModalAdd'
 import ManageTable from '@/common/mixins/ManageTable'
 import getOptionName from '@/common/mixins/getOptionName'
 import { mapState } from 'vuex'
 export default {
   components: {
     VTable,
-    Pagination,
-    ModalEdit,
-    ModalAdd
+    Pagination
   },
   mixins: [ManageTable, getOptionName],
   props: {
@@ -104,6 +97,21 @@ export default {
     await Promise.all([this.getData(), this.getAllOptions(allOptions)])
     this.loaded = true
     this.makeLoaded()
+  },
+  methods: {
+    toAdd() {
+      this.$router.push({
+        name: '{{ name }}Add'
+      })
+    },
+    toEdit(id) {
+      this.$router.push({
+        name: '{{ name }}Edit',
+        params: {
+          id
+        }
+      })
+    }
   }
 }
 </script>

@@ -6,7 +6,7 @@ export default [
     children: [
       {
         path: 'password',
-        component: () => import('@/pages/admin/views/password'),
+        component: () => import('@/pages/admin/views/me/password'),
         name: 'password',
         meta: {
           title: '修改用户密码'
@@ -14,7 +14,7 @@ export default [
       },
       {
         path: 'profile',
-        component: () => import('@/pages/admin/views/profile'),
+        component: () => import('@/pages/admin/views/me/profile'),
         name: 'profile',
         meta: {
           title: '修改用户信息'

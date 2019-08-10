@@ -46,19 +46,25 @@ const question = [
         return true
       }
     }
+  },
+  {
+    name: 'hasSub',
+    type: 'confirm',
+    message: '操作页面是否独立？'
   }
 ]
 
 function getFileTplList(answers, user_path) {
-  const { name, page } = answers
+  const { name, page, hasSub } = answers
   const first_upper_name = name[0].toUpperCase() + name.slice(1)
+  const hasSubStr = hasSub ? 'has_sub_' : ''
   return [
     {
       from: join(generator_path, 'data/tpl.js'),
       to: join(user_path, `src/common/data/modules/${name}.js`)
     },
     {
-      from: join(generator_path, 'router/tpl.js'),
+      from: join(generator_path, `router/${hasSubStr}tpl.js'`),
       to: join(user_path, `src/pages/${page}/router/modules/${name}.js`)
     },
     {
@@ -66,11 +72,11 @@ function getFileTplList(answers, user_path) {
       to: join(user_path, `src/pages/${page}/store/modules/${name}.js`)
     },
     {
-      from: join(generator_path, 'view/tpl.vue'),
+      from: join(generator_path, `view/tpl.vue`),
       to: join(user_path, `src/pages/${page}/views/${name}/index.vue`)
     },
     {
-      from: join(generator_path, 'view/components/table.vue'),
+      from: join(generator_path, `view/components/${hasSubStr}Table.vue`),
       to: join(
         user_path,
         `src/pages/${page}/views/${name}/components/${first_upper_name}Table.vue`
