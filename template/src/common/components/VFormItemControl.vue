@@ -47,24 +47,18 @@
     <!-- date -->
     <el-date-picker v-else-if="item.type === 'date'"
                     v-model="val"
-                    type="date"
+                    :type="_.get(item,'meta.control_type','date')"
+                    :time-arrow-control="true"
+                    :align="_.get(item,'meta.align','center')"
                     :editable="_.get(item,'meta.editable')"
+                    :clearable="_.get(item,'meta.clearable','true')"
                     :value-format="_.get(item,'meta.format','yyyy-MM-dd')"
-                    :clearable="true"
+                    :range-separator="_.get(item,'meta.range_separator','至')"
+                    :start-placeholder="_.get(item,'meta.start_placeholder','开始日期')"
+                    :end-placeholder="_.get(item,'meta.end_placeholder','结束日期')"
                     :placeholder="getPlaceholder('选择')"
-                    :size="respFormControlSize" />
-    <!-- datetimerange -->
-    <el-date-picker v-else-if="item.type === 'datetimerange'"
-                    v-model="val"
-                    :type="_.get(item,'meta.type','datetime')"
-                    :value-format="_.get(item,'meta.format','yyyy-MM-dd HH:mm:ss')"
-                    range-separator="至"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期"
-                    align="center"
                     :size="respFormControlSize"
-                    @change="changeSelect">
-    </el-date-picker>
+                    @change="changeSelect" />
     <!-- sidebar -->
     <el-slider v-else-if="item.type === 'range'"
                v-model="val"

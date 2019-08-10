@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-const __module = 'auth_user'
+const __module = 'admin'
 import { success } from '@/common/utils/message'
 import BaseForm from '@/common/components/BaseForm'
 import { mapActions, mapState } from 'vuex'

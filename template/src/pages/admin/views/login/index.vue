@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-const __module = 'auth_user'
+const __module = 'admin'
 import BaseForm from '@/common/components/BaseForm'
 import vFooter from '@/common/layouts/Footer'
 import getRedirect from '@/common/mixins/getRedirect'

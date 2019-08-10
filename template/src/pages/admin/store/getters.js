@@ -1,10 +1,10 @@
 import getters from '@/common/store/getters'
 export default {
   ...getters,
-  token: state => state.auth_user.access_token,
-  me: state => state.auth_user.me,
-  meRoles: state => state.auth_user.me.roleArr,
-  username: state => state.auth_user.me.name,
+  token: state => state.admin.access_token,
+  me: state => state.admin.me,
+  meRoles: state => state.admin.me.roleArr,
+  username: state => state.admin.me.name,
   device: state => state.app.device,
   isMobile: state => state.app.device === 'mobile',
   sidebar: state => state.app.sidebar,

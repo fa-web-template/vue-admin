@@ -40,12 +40,13 @@ export default {
       types: types,
       type_index: index,
       trend: {
-        columns: ['date', 'price'],
+        columns: ['date', 'price', 'profit'],
         rows: []
       },
       settings: {
         labelMap: {
-          price: '金额'
+          price: '金额',
+          profit: '利润'
         },
         type: types[index]
       },
@@ -74,7 +75,12 @@ export default {
       if (!data.date) {
         data.date = []
       }
-      const res = await this.$axios.get('/data/analysis', data)
+      //   const res = await this.$axios.get('/data/analysis', data)
+      const res = new Array(30).fill().map((item, index) => ({
+        date: `2019-08-${index + 1}`,
+        price: Math.random() * 10000,
+        profit: Math.random() * 5000
+      }))
       this.trend.rows = res
     },
     async handleSubmit() {
@@ -92,6 +98,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .toolbar .el-form {
-    padding-top: 0.7rem;
+  padding-top: 0.7rem;
 }
 </style>

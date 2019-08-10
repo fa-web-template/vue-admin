@@ -18,7 +18,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // const store = router.app.$options.store
-  // const user = store.state.auth_user
+  // const user = store.state.admin
   // const roles = user.me.roleArr
   // if (!user || !user.access_token) {
   //     return next(`/login?redirect=${to.path}`)

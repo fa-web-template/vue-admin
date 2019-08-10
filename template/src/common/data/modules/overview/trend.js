@@ -3,8 +3,9 @@ export default {
     item: [
       {
         key: 'date',
-        type: 'datetimerange',
+        type: 'date',
         meta: {
+          control_type: 'daterange',
           enableEvent: true
         }
       }

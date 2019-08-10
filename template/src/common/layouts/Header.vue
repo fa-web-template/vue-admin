@@ -79,7 +79,7 @@ export default {
     ]
   },
   methods: {
-    ...mapActions('auth_user', ['logout']),
+    ...mapActions('admin', ['logout']),
     async handleLogout() {
       await this.logout()
       await success('登出成功！')

@@ -13,7 +13,7 @@
                    :style="btnStyle"
                    :disabled="disabled"
                    class="btn">
-          {{ openBtnText }}
+          \{{ openBtnText }}
         </el-button>
       </slot>
     </div>
