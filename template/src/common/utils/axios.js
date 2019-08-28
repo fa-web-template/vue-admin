@@ -20,10 +20,17 @@ export default {
 
     // response interceptor
     axios.interceptors.response.use(
-      data => {
-        return data.data.data !== undefined ? data.data.data : data.data
+      response => {
+        const { authorization } = response.headers
+        if (authorization) {
+          store.commit('auth_user/updateToken', authorization)
+        }
+        return response.data.data !== undefined
+          ? response.data.data
+          : response.data
       },
       err => {
+        console.log(err.response)
         if (!err.response) {
           error(err)
           return Promise.reject(err)
@@ -46,18 +53,18 @@ export default {
     const getHeader = () => {
       return needAuth
         ? {
-          Authorization: `Bearer ${store.getters.token}`
-        }
+            Authorization: `Bearer ${store.getters.token}`
+          }
         : {}
     }
 
     // request methods
 
     /**
-         *
-         * @param {*} url
-         * @param {*} data
-         */
+     *
+     * @param {*} url
+     * @param {*} data
+     */
     const get = (url, data = {}) => {
       return axios({
         method: 'get',
@@ -70,10 +77,10 @@ export default {
     }
 
     /**
-         *
-         * @param {*} url
-         * @param {*} data
-         */
+     *
+     * @param {*} url
+     * @param {*} data
+     */
     const post = (url, data = {}) => {
       data = qs.stringify(data)
       return axios({
@@ -87,10 +94,10 @@ export default {
     }
 
     /**
-         *
-         * @param {*} url
-         * @param {*} data
-         */
+     *
+     * @param {*} url
+     * @param {*} data
+     */
     const put = (url, data = {}) => {
       data = qs.stringify(data)
       return axios({
@@ -104,10 +111,10 @@ export default {
     }
 
     /**
-         *
-         * @param {*} url
-         * @param {*} data
-         */
+     *
+     * @param {*} url
+     * @param {*} data
+     */
     const del = (url, data = {}) => {
       return axios({
         method: 'delete',
@@ -120,10 +127,10 @@ export default {
     }
 
     /**
-         *
-         * @param {*} url
-         * @param {*} data
-         */
+     *
+     * @param {*} url
+     * @param {*} data
+     */
     const upload = (url, data = {}) => {
       return axios({
         method: 'post',
@@ -137,8 +144,8 @@ export default {
     }
 
     /**
-         * all methods
-         */
+     * all methods
+     */
     const methods = {
       get,
       post,
@@ -148,8 +155,8 @@ export default {
     }
 
     /**
-         * package function
-         */
+     * package function
+     */
     const ax = {}
 
     Object.keys(methods).forEach(key => {
