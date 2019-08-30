@@ -1,13 +1,12 @@
 <template>
   <div id="app">
-    <router-view v-if="isRouterAlive"
-                 :key="$route.fullPath" />
+    <router-view v-if="isRouterAlive" />
   </div>
 </template>
 <script>
 import ResizeHandler from '@/common/mixins/ResizeHandler.js'
 import { hasPermission } from '@/common/utils/role'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   mixins: [ResizeHandler],
   data() {
@@ -16,7 +15,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['device', 'meRole'])
+    ...mapGetters(['device', 'meRole', 'root'])
   },
   watch: {
     $route(route) {
@@ -34,16 +33,20 @@ export default {
   },
   methods: {
     ...mapActions('app', ['updateNavList', 'updateSearchList']),
+    ...mapMutations('app', ['updateRoot']),
     checkRootRoute(route) {
       let routes = this.$router.options.routes
-      let parent = null
+      let parent = { name: '' }
       const first = route.matched[0]
       const isRoot = this._.get(first, 'meta.root')
       if (isRoot) {
         routes = routes.find(item => item.name === first.name).children
         parent = first
       }
-      this.initNavList(routes, parent)
+      if (this.root !== parent.name) {
+        this.updateRoot(parent.name)
+        this.initNavList(routes, parent)
+      }
     },
     initNavList(routes = null, parent = null) {
       routes = routes || this.$router.options.routes

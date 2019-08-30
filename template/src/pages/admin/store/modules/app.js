@@ -6,6 +6,7 @@ const state = {
     navList: [],
     searchList: []
   },
+  root: '',
   showAvatar: true,
   title: config.app_title + '- 后台管理'
 }
@@ -45,6 +46,9 @@ const mutations = {
   },
   updateSearchList(state, { searchList }) {
     state.sidebar.searchList = searchList
+  },
+  updateRoot(state, root) {
+    state.root = root
   }
 }
 

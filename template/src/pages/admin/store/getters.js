@@ -8,6 +8,7 @@ export default {
   device: state => state.app.device,
   isMobile: state => state.app.device === 'mobile',
   sidebar: state => state.app.sidebar,
+  root: state => state.app.root,
   navList: state => state.app.sidebar.navList,
   searchList: state => state.app.sidebar.searchList,
   showAvatar: state => state.app.showAvatar,

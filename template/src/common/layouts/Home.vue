@@ -56,73 +56,73 @@ export default {
 </script>
 <style lang="scss" scoped>
 .wrapper {
-    position: relative;
-    @include wh(100%);
-    background: #f2f2f2;
-    &.desktop {
-        &.openSidebar {
-            .sidebar {
-                width: $sidebar-width;
-            }
-            .container {
-                margin-left: $sidebar-width;
-            }
-        }
-        &.hideSidebar {
-            .sidebar {
-                width: 0;
-            }
-            .container {
-                margin-left: 0;
-            }
-        }
+  position: relative;
+  @include wh(100%);
+  background: #f2f2f2;
+  &.desktop {
+    &.openSidebar {
+      .sidebar {
+        width: $sidebar-width;
+      }
+      .container {
+        margin-left: $sidebar-width;
+      }
     }
-    &.mobile {
-        .container {
-            margin-left: 0;
-        }
-        &.hideSidebar {
-            .sidebar {
-                transform: translate3d(-$sidebar-width, 0, 0);
-            }
-        }
+    &.hideSidebar {
+      .sidebar {
+        width: 0;
+      }
+      .container {
+        margin-left: 0;
+      }
     }
+  }
+  &.mobile {
+    .container {
+      margin-left: 0;
+    }
+    &.hideSidebar {
+      .sidebar {
+        transform: translate3d(-$sidebar-width, 0, 0);
+      }
+    }
+  }
 }
 
 .drawer-bg {
-    @include mask(1000);
+  @include mask(1000);
 }
 
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 1001;
-    background: $sidebar-color;
-    overflow: hidden;
-    transition: width 0.28s, transform 0.28s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: $sidebar-color;
+  overflow: hidden;
+  transition: width 0.28s, transform 0.28s;
 }
 .container {
+  @include flex-column;
+  overflow: hidden;
+  height: 100%;
+  transition: margin-left 0.28s;
+  > * {
+    width: 100%;
+  }
+  .app-content {
     @include flex-column;
+    @include padding;
+    flex: 1;
+    padding-bottom: 0;
     overflow: hidden;
-    height: 100%;
-    transition: margin-left 0.28s;
-    > * {
-        width: 100%;
-    }
-    .app-content {
-        @include flex-column;
-        @include padding;
-        flex: 1;
-        padding-bottom: 0;
-        overflow: hidden;
-    }
-    .inner-container {
-        @include no-scrollbar;
-        @include flex-column;
-        flex: 1;
-        overflow: hidden;
-    }
+  }
+  .inner-container {
+    @include no-scrollbar;
+    @include flex-column;
+    flex: 1;
+    overflow: hidden;
+  }
 }
 </style>

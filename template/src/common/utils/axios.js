@@ -10,6 +10,10 @@ export default {
     // request interceptor
     axios.interceptors.request.use(
       config => {
+        config.headers = {
+          ...config.headers,
+          ...getHeader()
+        }
         return config
       },
       error => {
@@ -30,7 +34,6 @@ export default {
           : response.data
       },
       err => {
-        console.log(err.response)
         if (!err.response) {
           error(err)
           return Promise.reject(err)
@@ -69,9 +72,6 @@ export default {
       return axios({
         method: 'get',
         url,
-        headers: {
-          ...getHeader()
-        },
         params: data
       })
     }
@@ -86,9 +86,6 @@ export default {
       return axios({
         method: 'post',
         url,
-        headers: {
-          ...getHeader()
-        },
         data
       })
     }
@@ -103,9 +100,6 @@ export default {
       return axios({
         method: 'put',
         url,
-        headers: {
-          ...getHeader()
-        },
         data
       })
     }
@@ -119,9 +113,6 @@ export default {
       return axios({
         method: 'delete',
         url,
-        headers: {
-          ...getHeader()
-        },
         params: data
       })
     }
@@ -137,8 +128,7 @@ export default {
         url,
         data,
         headers: {
-          'Content-Type': 'multipart/form-data',
-          ...getHeader()
+          'Content-Type': 'multipart/form-data'
         }
       })
     }

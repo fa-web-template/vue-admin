@@ -2,7 +2,7 @@
   <div class="app-aside">
     <div class="title-container">
       <h1 class="title">
-        <router-link to="/index">\{{ title }}</router-link>
+        <router-link to="/index">{{ title }}</router-link>
       </h1>
     </div>
     <el-menu v-if="!_.isEmpty(navList)"
@@ -43,9 +43,12 @@ export default {
   },
   methods: {
     updateActive() {
-      this.activeIndex = this.$route.matched.find(item => {
+      const activeIndex = this.$route.matched.find(item => {
         return !item.redirect
       }).path
+      if (this.activeIndex !== activeIndex) {
+        this.activeIndex = activeIndex
+      }
     }
   }
 }
