@@ -55,7 +55,7 @@ const questions = [
   }
 ]
 
-function gitTemplates(answers, user_path) {
+function getTemplates(answers, user_path) {
   const { name, page, hasSub } = answers
   const first_upper_name = name[0].toUpperCase() + name.slice(1)
   const hasSubStr = hasSub ? 'has_sub_' : ''
@@ -101,5 +101,5 @@ function gitTemplates(answers, user_path) {
 
 module.exports = {
   questions,
-  gitTemplates
+  getTemplates
 }
