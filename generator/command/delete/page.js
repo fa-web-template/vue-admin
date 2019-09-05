@@ -1,5 +1,5 @@
 const { join } = require('path')
-const question = [
+const questions = [
   {
     name: 'page',
     type: 'input',
@@ -26,7 +26,7 @@ const question = [
   }
 ]
 
-function getFileTplList(answers, user_path) {
+function getTemplates(answers, user_path) {
   const { name, page } = answers
   return [
     {
@@ -45,6 +45,6 @@ function getFileTplList(answers, user_path) {
 }
 
 module.exports = {
-  question,
-  getFileTplList
+  questions,
+  getTemplates
 }

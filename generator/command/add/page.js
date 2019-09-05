@@ -4,7 +4,7 @@ const pages = templateJSON.pages
 const generator_path = join(__dirname, '../../template/')
 let tmp_page_value = 'admin'
 
-const question = [
+const questions = [
   {
     name: 'page',
     type: 'input',
@@ -50,11 +50,12 @@ const question = [
   {
     name: 'hasSub',
     type: 'confirm',
+    default: true,
     message: '操作页面是否独立？'
   }
 ]
 
-function getFileTplList(answers, user_path) {
+function gitTemplates(answers, user_path) {
   const { name, page, hasSub } = answers
   const first_upper_name = name[0].toUpperCase() + name.slice(1)
   const hasSubStr = hasSub ? 'has_sub_' : ''
@@ -99,6 +100,6 @@ function getFileTplList(answers, user_path) {
 }
 
 module.exports = {
-  question,
-  getFileTplList
+  questions,
+  gitTemplates
 }
