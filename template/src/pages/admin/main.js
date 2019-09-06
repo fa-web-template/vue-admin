@@ -13,26 +13,8 @@ import axios from '@/common/utils/axios'
 import VForm from '@/common/components/VForm'
 import VCard from '@/common/components/VCard'
 import NotSubRouter from '@/common/layouts/components/NotSubRouter'
-import VueAMap from 'vue-amap'
 
 import './router/permission'
-
-Vue.use(VueAMap)
-VueAMap.initAMapApiLoader({
-  key: 'your key',
-  plugin: [
-    'AMap.Autocomplete',
-    'AMap.PlaceSearch',
-    'AMap.Scale',
-    'AMap.OverView',
-    'AMap.ToolBar',
-    'AMap.MapType',
-    'AMap.PolyEditor',
-    'AMap.CircleEditor'
-  ],
-  // 默认高德 sdk 版本为 1.4.4
-  v: '1.4.4'
-})
 
 import VCharts from 'v-charts'
 Vue.use(VCharts)

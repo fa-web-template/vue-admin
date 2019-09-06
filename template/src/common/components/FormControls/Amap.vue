@@ -10,7 +10,27 @@
   </el-amap>
 </template>
 <script>
+import Vue from 'vue'
+import VueAMap from 'vue-amap'
 import { lazyAMapApiLoaderInstance } from 'vue-amap'
+
+Vue.use(VueAMap)
+
+VueAMap.initAMapApiLoader({
+  key: 'your key',
+  plugin: [
+    'AMap.Autocomplete',
+    'AMap.PlaceSearch',
+    'AMap.Scale',
+    'AMap.OverView',
+    'AMap.ToolBar',
+    'AMap.MapType',
+    'AMap.PolyEditor',
+    'AMap.CircleEditor'
+  ],
+  v: '1.4.4'
+})
+
 export default {
   name: 'Amap',
   props: {
