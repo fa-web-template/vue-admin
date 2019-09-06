@@ -20,6 +20,7 @@
     <el-dialog v-el-drag-dialog
                :title="title"
                :visible.sync="dialogVisible"
+               :append-to-body="appendToBody"
                width="95%"
                @open="open"
                @close="close">
@@ -72,6 +73,10 @@ export default {
       default: true
     },
     btnDisabled: {
+      type: Boolean,
+      default: false
+    },
+    appendToBody: {
       type: Boolean,
       default: false
     },

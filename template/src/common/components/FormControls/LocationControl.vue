@@ -8,6 +8,7 @@
     <v-modal ref="modal"
              btn-size="mini"
              title="选择位置信息"
+             :append-to-body="true"
              :need-footer="false"
              :need-open-btn="false">
       <div slot="body"
