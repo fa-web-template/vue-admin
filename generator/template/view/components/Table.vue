@@ -41,7 +41,8 @@
                         :current="scope.row"
                         :module="module"
                         btn-size="mini"
-                        @get-data="getData" />
+                        @get-data="getData"
+                        @refresh="$refs.table.refreshTable" />
             <el-button size="mini"
                        type="danger"
                        @click="handleDelete([scope.row.id])">
