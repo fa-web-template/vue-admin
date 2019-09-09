@@ -61,7 +61,7 @@ export default {
     width: {
       type: [Number, String],
       required: false,
-      default: 'auto'
+      default: '99.8%'
     }
   },
   data() {
