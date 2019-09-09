@@ -213,4 +213,7 @@ export default {
 .editor-upload-btn {
   display: inline-block;
 }
+.mce-btn-group .mce-btn {
+  float: left;
+}
 </style>
