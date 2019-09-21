@@ -29,9 +29,7 @@ export default {
         if (authorization) {
           store.commit('auth_user/updateToken', authorization)
         }
-        return response.data.data !== undefined
-          ? response.data.data
-          : response.data
+        return response.data
       },
       err => {
         if (!err.response) {
@@ -156,3 +154,4 @@ export default {
     Vue.prototype.$axios = ax
   },
 }
+
