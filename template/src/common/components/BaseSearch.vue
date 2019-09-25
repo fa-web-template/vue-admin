@@ -88,6 +88,9 @@ export default {
         getFormData: this.getFormData
       })
     },
+    toggleHidden() {
+      this.hidden = !this.hidden
+    },
     handleReset() {
       this.reset()
       this.submit()

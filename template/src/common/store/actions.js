@@ -3,28 +3,28 @@ export default {
     const path = url || module
     const res = await this._vm.$axios.get(
       `/${path}`,
-      ctx.getters.requestData(ctx.rootState[module]),
+      ctx.getters.requestData(ctx.rootState[module])
     )
     if (doCommit) {
       ctx.commit(`${module}/update`, res, {
-        root: true,
+        root: true
       })
     }
     return res
   },
   async getOptions(ctx, modules) {
     const res = await this._vm.$axios.get(`/options`, {
-      models: modules,
+      models: modules
     })
     Object.keys(res).forEach(key => {
       ctx.commit(
         `${key}/update`,
         {
-          options: res[key],
+          options: res[key]
         },
         {
-          root: true,
-        },
+          root: true
+        }
       )
     })
   },
@@ -44,27 +44,19 @@ export default {
     const item =
       all === true
         ? {
-<<<<<<< HEAD
-          all,
+          all
         }
         : {
-          ids,
+          ids
         }
-=======
-            all
-          }
-        : {
-            ids
-          }
->>>>>>> fix(修复一些问题): Fix some problems
     await this._vm.$axios.put(`/${module}`, {
       ...item,
-      ...data,
+      ...data
     })
   },
   async delete(crx, { module, ids }) {
     return await this._vm.$axios.delete(`/${module}`, {
-      ids,
+      ids
     })
   },
   async resetSearchData(ctx, { module, getFormData = null }) {
@@ -72,26 +64,22 @@ export default {
     ctx.commit(
       `${module}/update`,
       {
-<<<<<<< HEAD
-        search_data: getFormData(),
-=======
         search_data: getFormData()
->>>>>>> fix(修复一些问题): Fix some problems
       },
       {
-        root: true,
-      },
+        root: true
+      }
     )
   },
   async updateSearch(ctx, { module, search = [] }) {
     ctx.commit(
       `${module}/update`,
       {
-        search,
+        search
       },
       {
-        root: true,
-      },
+        root: true
+      }
     )
-  },
+  }
 }

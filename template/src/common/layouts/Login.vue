@@ -55,10 +55,10 @@ export default {
   methods: {
     ...mapActions(__module, ['login', 'getProfile']),
     async submit(data) {
-      //   await this.login({
-      //     data
-      //   })
-      //   await this.getProfile()
+      await this.login({
+        data
+      })
+      await this.getProfile()
       this.$root.$children[0].initNavList()
       this.$router.push({
         path: this.redirect || '/index',

@@ -15,7 +15,7 @@ const routerConfig = {
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/index',
       hidden: true
     },
     {

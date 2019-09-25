@@ -5,7 +5,7 @@
             class="v-card card-body-scroll_y"
             :title="title">
       <base-edit class="full-tab-form"
-                 :form-item="$v_data[module].admin.item"
+                 :form-item="$v_data[module].common.item"
                  :current="data"
                  :before-submit="beforeSubmit"
                  :module="module"
