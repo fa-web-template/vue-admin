@@ -15,7 +15,7 @@
       </el-button>
       <el-button :size="respBtnSize"
                  @click="toggleHidden">
-        {{ hidden ? '展开' : '收起' }}
+        \{{ hidden ? '展开' : '收起' }}
       </el-button>
     </div>
     <v-form :inline="true"
