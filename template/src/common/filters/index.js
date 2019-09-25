@@ -1,4 +1,5 @@
 import { numberFormat as _numberFormat } from '@/common/utils'
+import _truncate from 'lodash/truncate'
 /**
  *
  * 10000 => "￥10,000"
@@ -55,4 +56,18 @@ export function numberFormat(num) {
 export function getMonth(date) {
   const d = new Date(date)
   return numberFormat(d.getMonth() + 1)
+}
+
+/**
+ *
+ *
+ * @export
+ * @param {string} str
+ * @param {string} n
+ * @returns
+ */
+export function truncate(str, { len = 15 } = {}) {
+  return _truncate(str, {
+    length: len
+  })
 }

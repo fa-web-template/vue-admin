@@ -1,6 +1,6 @@
 <template>
   <v-card :title="title"
-          class="search">
+          :class="['search',{ 'hidden': hidden }]">
     <div slot="toolbar"
          class="toolbar">
       <el-button :size="respBtnSize"
@@ -12,6 +12,10 @@
                  type="info"
                  @click="handleReset">
         重置
+      </el-button>
+      <el-button :size="respBtnSize"
+                 @click="toggleHidden">
+        {{ hidden ? '展开' : '收起' }}
       </el-button>
     </div>
     <v-form :inline="true"
@@ -47,7 +51,8 @@ export default {
     }
   },
   data: () => ({
-    search: []
+    search: [],
+    hidden: false
   }),
   computed: {
     submitAction() {
@@ -82,6 +87,12 @@ export default {
         module: this.module,
         getFormData: this.getFormData
       })
+<<<<<<< HEAD
+=======
+    },
+    toggleHidden() {
+      this.hidden = !this.hidden
+>>>>>>> fix(修复一些问题): Fix some problems
     },
     handleReset() {
       this.reset()
@@ -135,3 +146,13 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.search {
+  &.hidden {
+    /deep/ .el-card__body {
+      padding: 0;
+      height: 0;
+    }
+  }
+}
+</style>

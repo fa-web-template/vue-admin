@@ -12,14 +12,14 @@ export default {
       config => {
         config.headers = {
           ...config.headers,
-          ...getHeader(),
+          ...getHeader()
         }
         return config
       },
       error => {
         error('timed out!')
         return Promise.reject(error)
-      },
+      }
     )
 
     // response interceptor
@@ -27,7 +27,7 @@ export default {
       response => {
         const { authorization } = response.headers
         if (authorization) {
-          store.commit('auth_user/updateToken', authorization)
+          store.commit('admin/updateToken', authorization)
         }
         return response.data.data !== undefined
           ? response.data.data
@@ -50,14 +50,14 @@ export default {
           error(message || '发生错误，请刷新重试！')
         }
         return Promise.reject(err)
-      },
+      }
     )
 
     const getHeader = () => {
       return needAuth
         ? {
-          Authorization: `Bearer ${store.getters.token}`,
-        }
+            Authorization: `Bearer ${store.getters.token}`
+          }
         : {}
     }
 
@@ -72,7 +72,7 @@ export default {
       return axios({
         method: 'get',
         url,
-        params: data,
+        params: data
       })
     }
 
@@ -86,7 +86,7 @@ export default {
       return axios({
         method: 'post',
         url,
-        data,
+        data
       })
     }
 
@@ -100,7 +100,7 @@ export default {
       return axios({
         method: 'put',
         url,
-        data,
+        data
       })
     }
 
@@ -113,7 +113,7 @@ export default {
       return axios({
         method: 'delete',
         url,
-        params: data,
+        params: data
       })
     }
 
@@ -128,8 +128,8 @@ export default {
         url,
         data,
         headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+          'Content-Type': 'multipart/form-data'
+        }
       })
     }
 
@@ -141,7 +141,7 @@ export default {
       post,
       put,
       delete: del,
-      upload,
+      upload
     }
 
     /**
@@ -154,5 +154,5 @@ export default {
     })
 
     Vue.prototype.$axios = ax
-  },
+  }
 }

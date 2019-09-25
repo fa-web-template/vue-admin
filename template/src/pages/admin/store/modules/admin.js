@@ -35,6 +35,10 @@ const mutations = {
       state[key] = val
     })
   },
+  updateToken(state, token) {
+    console.log(token)
+    state.access_token = token.replace('Bearer ', '')
+  },
   updateProfile(state, { user }) {
     state.me = {
       ...user

@@ -6,7 +6,6 @@ export default {
         label: '名称',
         key: 'name',
         type: 'text',
-
         rules: [...rules.required({ label: '名称' })]
       }
     ],

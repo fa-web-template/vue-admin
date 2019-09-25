@@ -44,11 +44,19 @@ export default {
     const item =
       all === true
         ? {
+<<<<<<< HEAD
           all,
         }
         : {
           ids,
         }
+=======
+            all
+          }
+        : {
+            ids
+          }
+>>>>>>> fix(修复一些问题): Fix some problems
     await this._vm.$axios.put(`/${module}`, {
       ...item,
       ...data,
@@ -64,7 +72,11 @@ export default {
     ctx.commit(
       `${module}/update`,
       {
+<<<<<<< HEAD
         search_data: getFormData(),
+=======
+        search_data: getFormData()
+>>>>>>> fix(修复一些问题): Fix some problems
       },
       {
         root: true,

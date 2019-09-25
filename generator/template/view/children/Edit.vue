@@ -38,14 +38,13 @@ export default {
     }
   },
   async created() {
-    this.data = await this.initData()
+    await this.initData()
     this.loaded = true
   },
   methods: {
     ...mapActions(__module, ['getData']),
     async initData() {
-      const data = await this.getData(this.id)
-      return data
+      this.data = await this.getData(this.id)
     },
     beforeSubmit(data) {
       return data
