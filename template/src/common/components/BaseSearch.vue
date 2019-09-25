@@ -87,12 +87,6 @@ export default {
         module: this.module,
         getFormData: this.getFormData
       })
-<<<<<<< HEAD
-=======
-    },
-    toggleHidden() {
-      this.hidden = !this.hidden
->>>>>>> fix(修复一些问题): Fix some problems
     },
     handleReset() {
       this.reset()
