@@ -3,7 +3,7 @@
     <div :class="['login-container',device]">
       <div v-if="!isMobile"
            class="login-text">
-        <h1 class="title">{{ title }}</h1>
+        <h1 class="title">后台管理</h1>
         <p class="message">
           <span>不忘初心，方得始终</span>
           <span>那些成功的人，往往是有着坚定目标，并持续努力的人</span>
@@ -13,16 +13,11 @@
         <el-card>
           <div slot="header"
                class="card-header">
-            <h2 class="card-title">{{ loginTitle }}</h2>
+            <h2 class="card-title">后台管理</h2>
           </div>
-          <base-form :form-item="$v_data[module].login.item"
-                     :get-form-data="$v_data[module].login.data"
-                     :show-label="false"
-                     btn-size="mini"
-                     :btn-style="{ width: '100%' }"
-                     :need-reset-btn="false"
-                     submit-btn-text="登录"
-                     @submit="submit" />
+          <ele-form v-bind="$v_data[module].login"
+                    :form-data="formData"
+                    :request-fn="submit" />
         </el-card>
       </div>
     </div>
@@ -31,18 +26,17 @@
 </template>
 <script>
 const __module = 'admin'
-import BaseForm from '@/common/components/BaseForm'
 import vFooter from '@/common/layouts/Footer'
-import getRedirect from '@/common/mixins/getRedirect'
+import getRedirectMixin from '@/common/mixins/getRedirectMixin'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
-    BaseForm,
     vFooter
   },
-  mixins: [getRedirect],
+  mixins: [getRedirectMixin],
   data: () => ({
-    module: __module
+    module: __module,
+    formData: {}
   }),
   computed: {
     ...mapGetters(['device', 'isMobile', 'title']),
@@ -132,6 +126,10 @@ export default {
     /deep/ .el-button--mini {
       padding: 7px 8px;
     }
+  }
+  .login-panel /deep/ .el-button {
+    width: 100%;
+    margin-top: 12px;
   }
 }
 .card-header {

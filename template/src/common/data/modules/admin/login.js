@@ -1,36 +1,32 @@
-import rules from '../../rules'
 export default {
-  item: [
-    {
-      key: 'number',
-      type: 'text',
-      meta: {
+  isShowBackBtn: false,
+  submitBtnText: '登录',
+  formAttrs: {
+    size: 'small',
+  },
+  formDesc: {
+    number: {
+      type: 'input',
+      attrs: {
         placeholder: '请输入用户名',
-        slot: {
-          name: 'prepend',
-          type: 'icon',
-          value: 'el-icon-ali-ai-user'
-        }
       },
-      ...rules.required({ label: '用户名' })
+      slots: {
+        prepend(h, data) {
+          return h('i', { class: 'el-icon-ali-ai-user' })
+        },
+      },
     },
-    {
-      key: 'password',
+    password: {
       type: 'password',
-      meta: {
+      attrs: {
         placeholder: '请输入密码',
-        slot: {
-          name: 'prepend',
-          type: 'icon',
-          value: 'el-icon-ali-mima'
-        }
       },
-      ...rules.required({ label: '密码' })
-    }
-  ],
-
-  data: () => ({
-    number: '',
-    password: ''
-  })
+      slots: {
+        prepend(h, data) {
+          return h('i', { class: 'el-icon-ali-mima' })
+        },
+      },
+    },
+  },
+  rules: {},
 }

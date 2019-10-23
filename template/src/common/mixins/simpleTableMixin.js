@@ -1,9 +1,12 @@
-import loading from './loading'
-import getData from './getData'
-import ResponsiveSize from './ResponsiveSize'
+import loadingMixin from './loadingMixin'
+import responsiveSizeMixin from './responsiveSizeMixin'
 export default {
-  mixins: [ResponsiveSize, getData, loading],
+  mixins: [responsiveSizeMixin, loadingMixin],
   props: {
+    getData: {
+      type: Function,
+      required: true
+    },
     module: {
       type: String,
       required: true

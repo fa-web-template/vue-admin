@@ -1,9 +1,9 @@
 {
-  "name": "vue-admin",
-  "title": "Vue 后台管理",
-  "description": "一个 Vue 后台管理系统模板",
+  "name": "{{ name }}",
+  "title": "{{ title }}",
+  "description": "{{ desc }}",
   "version": "0.0.1",
-  "author": "gd4ark <gd.4ark@gmail.com>",
+  "author": "{{{ author }}}",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,14 +15,19 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "axios": "^0.18.0",
     "echarts": "^4.2.1",
-    "element-ui": "^2.8.2",
+    "element-ui": "^2.12.0",
     "file-saver": "^2.0.1",
     "fuse.js": "3.4.4",
     "html2canvas": "^1.0.0-rc.3",
@@ -37,6 +42,9 @@
     "vue-amap": "^0.5.10",
     "vue-codemirror-lite": "^1.0.4",
     "vue-count-to": "^1.0.13",
+    "vue-ele-form": "^0.6.5",
+    "vue-ele-form-image-uploader": "^0.1.4",
+    "vue-fa-modal": "^0.1.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-localstorage": "^1.0.0",
@@ -49,14 +57,18 @@
     "@vue/cli-plugin-eslint": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
     "compression-webpack-plugin": "^2.0.0",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.2",
+    "eslint-config-fa": "0.0.8",
+    "eslint-plugin-vue": "^5.2.3",
     "husky": "^2.7.0",
+    "lint-staged": "^9.4.0",
     "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",
     "sass-resources-loader": "^2.0.0",
     "validate-commit-msg": "^2.14.0",
-    "vue-router": "^3.0.1",
+    "vue-eslint-parser": "^5.0.0",
+    "vue-router": "^3.0.7",
     "vue-template-compiler": "^2.5.17",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-dev-server": "^3.1.14"
@@ -66,5 +78,14 @@
       "autoprefixer": {}
     }
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

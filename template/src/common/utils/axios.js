@@ -1,6 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-import { log } from './index'
 import { error } from './message'
 
 export default {
@@ -41,13 +40,13 @@ export default {
         const status = err.response.status
         const message = err.response.data.message
         if (process.env.NODE_ENV === 'development') {
-          log('error: ' + message)
+          window.log('error: ' + message)
         }
         if (status === 401) {
-          error(message)
+          error(message || '请重新登录')
           router.push('/login')
         } else {
-          error(message || '发生错误，请刷新重试！')
+          error(message || '发生错误，请刷新重试')
         }
         return Promise.reject(err)
       }

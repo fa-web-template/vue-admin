@@ -36,7 +36,7 @@
 const __module = 'overview'
 import 'echarts/lib/component/dataZoom'
 import 'v-charts/lib/style.css'
-import loading from '@/common/mixins/loading'
+import loadingMixin from '@/common/mixins/loadingMixin'
 import Count from './components/Count'
 import Trend from './components/Trend'
 export default {
@@ -44,7 +44,7 @@ export default {
     Count,
     Trend
   },
-  mixins: [loading],
+  mixins: [loadingMixin],
   data() {
     return {
       module: __module,

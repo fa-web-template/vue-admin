@@ -3,10 +3,10 @@ export default {
   computed: {
     ...mapGetters(['isMobile']),
     respBtnSize() {
-      return this.isMobile ? 'mini' : 'mini'
+      return this.isMobile ? 'mini' : 'small'
     },
     respFormControlSize() {
-      return this.isMobile ? 'mini' : 'mini'
+      return this.isMobile ? 'mini' : 'small'
     }
   }
 }

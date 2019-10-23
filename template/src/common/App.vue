@@ -4,11 +4,11 @@
   </div>
 </template>
 <script>
-import ResizeHandler from '@/common/mixins/ResizeHandler.js'
+import resizeHandlerMixin from '@/common/mixins/resizeHandlerMixin'
 import { hasPermission } from '@/common/utils/role'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
-  mixins: [ResizeHandler],
+  mixins: [resizeHandlerMixin],
   data() {
     return {
       isRouterAlive: true

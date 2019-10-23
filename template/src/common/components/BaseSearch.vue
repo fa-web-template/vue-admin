@@ -18,21 +18,25 @@
         \{{ hidden ? '展开' : '收起' }}
       </el-button>
     </div>
-    <v-form :inline="true"
-            :form-item="innerFormItem"
-            :form-data="innerFormData"
-            @submit="submit" />
+    <ele-form :inline="true"
+              :is-show-submit-btn="false"
+              v-bind="attrs"
+              :form-data="formData"
+              :request-fn="submit" />
   </v-card>
 </template>
 <script>
 import { mapActions } from 'vuex'
-import getData from '@/common/mixins/getData'
-import submitChange from '@/common/mixins/submitChange'
-import ResponsiveSize from '@/common/mixins/ResponsiveSize'
+import submitChangeMixin from '@/common/mixins/submitChangeMixin'
+import responsiveSizeMixin from '@/common/mixins/responsiveSizeMixin'
 export default {
   name: 'BaseSearch',
-  mixins: [ResponsiveSize, getData, submitChange],
+  mixins: [responsiveSizeMixin, submitChangeMixin],
   props: {
+    getData: {
+      type: Function,
+      required: true
+    },
     title: {
       type: String,
       default: '搜索'
@@ -41,52 +45,49 @@ export default {
       type: String,
       required: true
     },
-    formItem: {
-      type: Array,
-      default: null
+    subModule: {
+      type: String,
+      default: 'search'
     },
-    getFormData: {
-      type: Function,
-      default: null
+    needReset: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
     search: [],
+    formData: {},
     hidden: false
   }),
   computed: {
-    submitAction() {
-      return `${this.module}search`
-    },
-    innerFormItem() {
-      return this.formItem
-        ? this.formItem
-        : this.$v_data[this.module].search.item
-    },
-    innerFormData() {
-      const state = this.$store.state[this.module]
-      if (this._.isEmpty(state.search_data)) {
-        state.search_data = this.getFormData
-          ? this.getFormData()
-          : this.$v_data[this.module].search.data()
-      }
-      return state.search_data
+    attrs() {
+      return this.$v_data[this.module][this.subModule]
     }
   },
   created() {
-    if (!this.module && !this.formItem) {
-      throw new Error(
-        'You must provide a `module` or `formItem` and `getFormData`'
-      )
+    if (this.needReset) {
+      this.reset()
+      this.handleUpdateSearch()
     }
+    this.formData = this.getFormData()
+    this.hidden = this.isMobile
   },
   methods: {
     ...mapActions(['resetSearchData', 'updateSearch']),
+    getFormData() {
+      const state = this.$store.state[this.module]
+      const key = `${this.subModule}_data`
+      if (this._.isEmpty(state.search_data)) {
+        state[key] = this.attrs.getFormData()
+      }
+      return state[key]
+    },
     reset() {
       this.resetSearchData({
         module: this.module,
-        getFormData: this.getFormData
+        subModule: this.subModule
       })
+      this.formData = this.getFormData()
     },
     toggleHidden() {
       this.hidden = !this.hidden
@@ -97,45 +98,38 @@ export default {
     },
     submit() {
       this.search = []
-      this.initSearchData(this.innerFormItem)
+      this.initSearchData()
       this.handleSubmit()
     },
-    initSearchData(array, key = '') {
-      array.forEach(el => {
-        if (el.isObject) {
-          return this.search.push({
-            type: el.type,
-            key: el.key,
-            data: this.innerFormData[el.key]
-          })
-        } else if (el.items) {
-          return this.initSearchData(el.items, key)
-        }
-        return this.setSearchData(el)
+    initSearchData() {
+      const formDesc = this.attrs.formDesc
+      Object.keys(formDesc).forEach(key => {
+        this.setSearchData(formDesc[key], key)
       })
     },
-    setSearchData(item) {
-      const key = item.key
-      let data = this.innerFormData[key]
-      if (data !== 0 && !data) return
-      const operation = this._.get(item, 'meta.operation', 'like')
-      if (operation === 'like') {
-        data = `%${data}%`
-      }
+    setSearchData(item, key) {
+      let value = this.formData[key]
+      if (value !== 0 && !value) return
+      const operation = this._.get(item, 'meta.operation', '=')
       this.search.push([
         key,
         operation,
-        data,
-        {
-          ...this._.get(item, 'meta', {})
-        }
+        value,
+        Object.assign({}, this._.get(item, 'meta', {}))
       ])
     },
     async handleSubmit() {
+      await this.handleUpdateSearch()
+      await this.handleGetData()
+    },
+    async handleUpdateSearch() {
       await this.updateSearch({
         module: this.module,
+        subModule: this.subModule,
         search: this.search
       })
+    },
+    async handleGetData() {
       this.beforeChange()
       await this.getData()
       this.afterChange()
@@ -145,10 +139,22 @@ export default {
 </script>
 <style lang="scss" scoped>
 .search {
+  /deep/ .el-card__body {
+    padding: 0;
+    max-height: 100px;
+    transition: max-height 0.15s ease;
+    > .ele-form {
+      padding: $card-body-padding !important;
+    }
+    .el-form-item + .el-form-item {
+      margin-left: 10px;
+    }
+  }
   &.hidden {
     /deep/ .el-card__body {
-      padding: 0;
-      height: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.15s ease;
     }
   }
 }

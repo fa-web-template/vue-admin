@@ -9,7 +9,8 @@ export default {
   small_layout: 'total,sizes,prev,next,jumper',
   search: [],
   search_data: {},
+  current_search_module: 'search',
   order_by: '',
   desc: 1,
-  options: []
+  options: [],
 }

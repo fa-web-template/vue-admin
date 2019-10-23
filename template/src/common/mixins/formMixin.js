@@ -1,12 +1,6 @@
-import BaseForm from '@/common/components/BaseForm'
 import { warning } from '@/common/utils/message'
 export default {
-  components: {
-    BaseForm
-  },
   props: {
-    formItem: Array,
-    getFormData: Function,
     customSubmit: {
       type: Function,
       default: data => data
@@ -27,18 +21,6 @@ export default {
       type: String,
       default: ''
     },
-    needSubmitBtn: {
-      type: Boolean,
-      default: true
-    },
-    labelWidth: {
-      type: String,
-      default: '85px'
-    },
-    submitBtnText: {
-      type: String,
-      default: '提交'
-    },
     btnType: {
       type: String,
       default: ''
@@ -46,39 +28,30 @@ export default {
     btnSize: {
       type: String,
       default: 'small'
-    },
-    isUpload: {
-      type: Boolean,
-      default: false
     }
   },
   data: () => ({
-    btnDisabled: false
+    btnLoading: false
   }),
   methods: {
     done() {
-      this.btnDisabled = false
-    },
-    reset() {
-      this.$nextTick(() => {
-        this.$refs.baseForm.reset()
-      })
+      this.btnLoading = false
     },
     async submit(data) {
       if (!this.beforeVerify(data)) {
-        return warning('请填写正确！')
+        return warning('请填写正确')
       }
       if (!this.module) {
         await this.customSubmit(data)
-        this.reset()
+        this.resetForm()
         this.done()
         this.$emit('success')
         this.afterSuccess()
-        return
+      } else {
+        this.btnLoading = true
+        data = this.beforeSubmit(data)
+        await this.submiting(data)
       }
-      this.btnDisabled = true
-      data = this.beforeSubmit(data)
-      await this.submiting(data)
     },
     async submiting() {
       // Placeholder
@@ -87,7 +60,9 @@ export default {
       // Placeholder
     },
     resetForm() {
-      this.$refs.baseForm.resetForm()
+      this.$nextTick(() => {
+        this.$refs.baseForm.resetForm()
+      })
     }
   }
 }

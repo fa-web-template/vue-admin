@@ -9,13 +9,16 @@
                  background />
 </template>
 <script>
-import getData from '@/common/mixins/getData'
-import submitChange from '@/common/mixins/submitChange'
+import submitChangeMixin from '@/common/mixins/submitChangeMixin'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Pagination',
-  mixins: [getData, submitChange],
+  mixins: [submitChangeMixin],
   props: {
+    getData: {
+      type: Function,
+      required: true
+    },
     state: {
       type: Object,
       required: true
@@ -66,25 +69,25 @@ export default {
 </script>
 <style lang="scss">
 .el-pagination {
-    @include padding-x;
-    margin: 0.8vh 0;
-    @include sub-center;
-    justify-content: flex-end;
+  @include padding-x;
+  margin: 0.8vh 0;
+  @include sub-center;
+  justify-content: flex-end;
 }
 .el-pagination__jump {
-    margin-left: 3px;
+  margin-left: 3px;
 }
 .el-pagination--small {
-    .el-pagination__sizes {
-        .el-input--mini .el-input__inner {
-            font-size: 0.9rem;
-            height: 22px;
-            line-height: 20px;
-        }
+  .el-pagination__sizes {
+    .el-input--mini .el-input__inner {
+      font-size: 0.9rem;
+      height: 22px;
+      line-height: 20px;
     }
+  }
 }
 .el-pagination button,
 .el-pagination span:not([class*='suffix']) {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 </style>

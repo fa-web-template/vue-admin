@@ -82,7 +82,7 @@ export default {
     ...mapActions('admin', ['logout']),
     async handleLogout() {
       await this.logout()
-      await success('登出成功！')
+      await success('登出成功')
       this.$router.push('/login')
     },
     toggleSidebar() {

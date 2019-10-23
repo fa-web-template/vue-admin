@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import getRedirect from '@/common/mixins/getRedirect'
+import getRedirectMixin from '@/common/mixins/getRedirectMixin'
 export default {
   name: 'Page404',
-  mixins: [getRedirect],
+  mixins: [getRedirectMixin],
   computed: {
     message() {
       return '您未被授权查看该页 您不具备查看该目录或页面的权限...'

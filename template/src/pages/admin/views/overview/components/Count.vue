@@ -29,10 +29,8 @@
   </v-card>
 </template>
 <script>
-// const allowRoles = ['system']
-// import hasRole from '@/common/mixins/hasRole'
 import CountTo from 'vue-count-to'
-import ResponsiveSize from '@/common/mixins/ResponsiveSize'
+import responsiveSizeMixin from '@/common/mixins/responsiveSizeMixin'
 export default {
   components: { CountTo },
   filters: {
@@ -40,7 +38,7 @@ export default {
       return parseInt(value, 10)
     }
   },
-  mixins: [ResponsiveSize],
+  mixins: [responsiveSizeMixin],
   props: {
     data: {
       type: Object,

@@ -31,51 +31,34 @@ export default {
   async add(ctx, { module, data }) {
     return await this._vm.$axios.post(`/${module}`, data)
   },
-  async uploadAdd(ctx, { module, data }) {
-    return await this._vm.$axios.upload(`/${module}`, data)
-  },
-  async uploadUpdate(ctx, { module, data, id }) {
-    return await this._vm.$axios.upload(`/${module}/${id}`, data)
-  },
   async update(ctx, { module, data, id }) {
     return await this._vm.$axios.put(`/${module}/${id}`, data)
   },
-  async updateBatch(ctx, { module, all = false, ids = [], data }) {
-    const item =
-      all === true
-        ? {
-          all
-        }
-        : {
-          ids
-        }
-    await this._vm.$axios.put(`/${module}`, {
-      ...item,
-      ...data
-    })
+  async upload(ctx, { url, data }) {
+    return await this._vm.$axios.upload(url, data)
   },
   async delete(crx, { module, ids }) {
     return await this._vm.$axios.delete(`/${module}`, {
       ids
     })
   },
-  async resetSearchData(ctx, { module, getFormData = null }) {
-    getFormData = getFormData || this._vm.$v_data[module].search.data
+  async resetSearchData(ctx, { module, subModule }) {
+    const getFormData = this._vm.$v_data[module][subModule].getFormData
     ctx.commit(
       `${module}/update`,
       {
-        search_data: getFormData()
+        [`${subModule}_data`]: getFormData()
       },
       {
         root: true
       }
     )
   },
-  async updateSearch(ctx, { module, search = [] }) {
+  async updateSearch(ctx, { module, subModule, search = [] }) {
     ctx.commit(
       `${module}/update`,
       {
-        search
+        [subModule]: search
       },
       {
         root: true

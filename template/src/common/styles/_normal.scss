@@ -43,6 +43,10 @@
   line-height: $upload-size;
 }
 
+.el-upload-list__item {
+  transition: none !important;
+}
+
 .el-upload-dragger {
   height: 100% !important;
 }
@@ -93,36 +97,12 @@
   text-align: left;
 }
 
+.el-form {
+  text-align: left;
+}
+
 .el-form--inline .el-form-item {
   margin: $form-item-margin;
-}
-
-.el-form-item-container {
-  margin-bottom: $form-item-margin-bottom;
-}
-
-.el-form-item:not(.el-form-item-container) {
-  margin-bottom: $form-item-margin-bottom;
-}
-
-.search .el-form-item:not(.el-form-item-container) {
-  margin-bottom: 0px;
-}
-
-.el-form-item {
-  margin-bottom: 0;
-}
-
-.el-form-item__label {
-  text-align: center;
-  font-size: 0.8rem;
-  width: 85px;
-}
-
-.el-form-item__error {
-  font-size: 8px;
-  padding-top: 2px;
-  line-height: 0.3;
 }
 
 .el-range-editor {

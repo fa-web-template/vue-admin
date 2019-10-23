@@ -2,7 +2,7 @@
   <div class="app-aside">
     <div class="title-container">
       <h1 class="title">
-        <router-link to="/index">{{ title }}</router-link>
+        <router-link to="/index">\{{ title }}</router-link>
       </h1>
     </div>
     <el-menu v-if="!_.isEmpty(navList)"

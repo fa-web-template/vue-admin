@@ -2,14 +2,15 @@
   <v-card title="业绩走势">
     <div slot="toolbar"
          class="toolbar">
-      <base-form ref="trendSearchForm"
-                 :show-label="false"
-                 :form-item="search.item"
-                 :get-form-data="search.data"
-                 :inline="true"
-                 :need-submit-btn="false"
-                 :need-reset-btn="false"
-                 @submit="submit" />
+      <ele-form ref="trendSearchForm"
+                v-bind="search"
+                :form-data="search.getFormData()"
+                :request-fn="submit" />
+      <el-button size="mini"
+                 type="primary"
+                 @click="handleSubmit">
+        搜索
+      </el-button>
       <el-button :size="respBtnSize"
                  @click="changeType">
         切换
@@ -24,14 +25,10 @@
 </template>
 <script>
 const __module = 'overview.trend'
-import loading from '@/common/mixins/loading'
-import BaseForm from '@/common/components/BaseForm'
-import ResponsiveSize from '@/common/mixins/ResponsiveSize'
+import loadingMixin from '@/common/mixins/loadingMixin'
+import responsiveSizeMixin from '@/common/mixins/responsiveSizeMixin'
 export default {
-  components: {
-    BaseForm
-  },
-  mixins: [ResponsiveSize, loading],
+  mixins: [responsiveSizeMixin, loadingMixin],
   data() {
     const types = ['line', 'histogram']
     const index = 0
@@ -83,8 +80,8 @@ export default {
       }))
       this.trend.rows = res
     },
-    async handleSubmit() {
-      await this.$refs.trendSearchForm.submit()
+    handleSubmit() {
+      this.$refs.trendSearchForm.handleSubmitForm()
     },
     async changeType() {
       this.type_index++

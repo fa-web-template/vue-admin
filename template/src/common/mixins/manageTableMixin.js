@@ -1,10 +1,10 @@
-import simpleTable from './simpleTable'
-import hasRole from './hasRole'
+import simpleTableMixin from './simpleTableMixin'
+import hasRoleMixin from './hasRoleMixin'
 import { warning, success } from '@/common/utils/message'
 import confirm from '@/common/utils/confirm'
 import { mapActions } from 'vuex'
 export default {
-  mixins: [simpleTable, hasRole],
+  mixins: [simpleTableMixin, hasRoleMixin],
   methods: {
     ...mapActions({
       delData: 'delete'
@@ -12,7 +12,7 @@ export default {
 
     handleDelete(ids) {
       if (ids.length === 0) {
-        return warning('没有选中项！')
+        return warning('没有选中项')
       }
       confirm({
         content: '确认删除？'
