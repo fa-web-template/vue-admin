@@ -27,7 +27,7 @@ export default {
       }
     },
     getFormData: () => ({
-      id: 1,
+      id: '',
       name: ''
     })
   }

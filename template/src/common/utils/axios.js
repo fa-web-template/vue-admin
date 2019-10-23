@@ -40,7 +40,7 @@ export default {
         const status = err.response.status
         const message = err.response.data.message
         if (process.env.NODE_ENV === 'development') {
-          window.log('error: ' + message)
+          console.log('error: ' + message)
         }
         if (status === 401) {
           error(message || '请重新登录')
@@ -55,8 +55,8 @@ export default {
     const getHeader = () => {
       return needAuth
         ? {
-          Authorization: `Bearer ${store.getters.token}`
-        }
+            Authorization: `Bearer ${store.getters.token}`
+          }
         : {}
     }
 
