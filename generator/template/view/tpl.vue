@@ -14,13 +14,13 @@ const __module = '{{ name }}'
 import BaseSearch from '@/common/components/BaseSearch'
 import sTable from './components/{{upperFirst name }}Table'
 import { mapActions } from 'vuex'
-import syncChange from '@/common/mixins/syncChange'
+import syncChangeMixin from '@/common/mixins/syncChangeMixin'
 export default {
   components: {
     BaseSearch,
     sTable
   },
-  mixins: [syncChange],
+  mixins: [syncChangeMixin],
   data: () => ({
     module: __module
   }),

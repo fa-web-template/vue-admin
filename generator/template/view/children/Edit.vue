@@ -5,11 +5,9 @@
             class="v-card card-body-scroll_y"
             :title="title">
       <base-edit class="full-tab-form"
-                 :form-item="$v_data[module].common.item"
-                 :current="data"
-                 :before-submit="beforeSubmit"
+                 v-bind="$v_data[module].common"
+                 :form-data="data"
                  :module="module"
-                 :is-upload="true"
                  @get-data="getData" />
     </v-card>
   </div>
@@ -45,9 +43,6 @@ export default {
     ...mapActions(__module, ['getData']),
     async initData() {
       this.data = await this.getData(this.id)
-    },
-    beforeSubmit(data) {
-      return data
     }
   }
 }

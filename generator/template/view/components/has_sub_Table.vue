@@ -60,15 +60,15 @@
 const allOptions = []
 import VTable from '@/common/components/VTable'
 import Pagination from '@/common/components/Pagination'
-import ManageTable from '@/common/mixins/ManageTable'
-import getOptionName from '@/common/mixins/getOptionName'
+import manageTableMixin from '@/common/mixins/manageTableMixin'
+import getOptionNameMixin from '@/common/mixins/getOptionNameMixin'
 import { mapState } from 'vuex'
 export default {
   components: {
     VTable,
     Pagination
   },
-  mixins: [ManageTable, getOptionName],
+  mixins: [manageTableMixin, getOptionNameMixin],
   props: {
     title: {
       type: String,

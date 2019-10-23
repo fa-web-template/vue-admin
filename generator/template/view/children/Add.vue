@@ -3,10 +3,8 @@
     <v-card class="v-card card-body-scroll_y"
             title="添加{{ title }}">
       <base-add class="full-tab-form"
-                :form-item="$v_data[module].common.item"
-                :get-form-data="$v_data[module].common.data"
-                :before-submit="beforeSubmit"
-                :is-upload="true"
+                v-bind="$v_data[module].common"
+                :form-data="formData"
                 :module="module" />
     </v-card>
   </div>
@@ -19,12 +17,8 @@ export default {
     BaseAdd
   },
   data: () => ({
-    module: __module
-  }),
-  methods: {
-    beforeSubmit(data) {
-      return data
-    }
-  }
+    module: __module,
+    formData: {}
+  })
 }
 </script>

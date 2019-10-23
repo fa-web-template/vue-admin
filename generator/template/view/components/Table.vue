@@ -4,8 +4,8 @@
     <div slot="toolbar"
          class="toolbar">
       <modal-add :btn-size="respBtnSize"
-                 :form-item="$v_data[module].common.item"
-                 :get-form-data="$v_data[module].common.data"
+                 v-bind="$v_data[module].common"
+                 :form-data="formData"
                  :module="module"
                  title="添加{{ title }}"
                  @get-data="getData" />
@@ -37,8 +37,8 @@
                          align="center">
           <template slot-scope="scope">
             <modal-edit :title=" `编辑{{ title }} ${scope.row.name} 中`"
-                        :form-item="$v_data[module].common.item"
-                        :current="scope.row"
+                        v-bind="$v_data[module].common"
+                        :form-data="scope.row"
                         :module="module"
                         btn-size="mini"
                         @get-data="getData"
@@ -66,8 +66,8 @@ import VTable from '@/common/components/VTable'
 import Pagination from '@/common/components/Pagination'
 import ModalEdit from '@/common/components/ModalEdit'
 import ModalAdd from '@/common/components/ModalAdd'
-import ManageTable from '@/common/mixins/ManageTable'
-import getOptionName from '@/common/mixins/getOptionName'
+import manageTableMixin from '@/common/mixins/manageTableMixin'
+import getOptionNameMixin from '@/common/mixins/getOptionNameMixin'
 import { mapState } from 'vuex'
 export default {
   components: {
@@ -76,7 +76,7 @@ export default {
     ModalEdit,
     ModalAdd
   },
-  mixins: [ManageTable, getOptionName],
+  mixins: [manageTableMixin, getOptionNameMixin],
   props: {
     title: {
       type: String,
@@ -84,6 +84,7 @@ export default {
     }
   },
   data: () => ({
+    formData: {},
     columns: [
       {
         prop: 'id',
