@@ -44,7 +44,7 @@
     "vue-count-to": "^1.0.13",
     "vue-ele-form": "^0.6.5",
     "vue-ele-form-image-uploader": "^0.1.4",
-    "vue-fa-modal": "^0.1.4",
+    "vue-fa-modal": "^0.1.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-localstorage": "^1.0.0",

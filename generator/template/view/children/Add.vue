@@ -5,13 +5,15 @@
       <base-add class="full-tab-form"
                 v-bind="$v_data[module].common"
                 :form-data="formData"
-                :module="module" />
+                :module="module"
+                @success="success" />
     </v-card>
   </div>
 </template>
 <script>
 const __module = '{{ name }}'
 import BaseAdd from '@/common/components/BaseAdd'
+import { success } from '@/common/utils/message'
 export default {
   components: {
     BaseAdd
@@ -19,6 +21,11 @@ export default {
   data: () => ({
     module: __module,
     formData: {}
-  })
+  }),
+  methods: {
+    success() {
+      this.$router.back()
+    }
+  }
 }
 </script>

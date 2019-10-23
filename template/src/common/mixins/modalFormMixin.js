@@ -10,13 +10,13 @@ export default {
       type: Object,
       required: true
     },
-    btnStyle: {
+    openBtnStyle: {
       type: Object,
       default: () => {
         return {}
       }
     },
-    btnIcon: {
+    openBtnIcon: {
       type: String,
       default: ''
     },
@@ -39,9 +39,9 @@ export default {
         'title',
         'openBtnText',
         'submitBtnText',
-        'btnType',
-        'btnIcon',
-        'btnStyle',
+        'openBtnType',
+        'openBtnIcon',
+        'openBtnStyle',
         'btnLoading',
         'disabled'
       ]
@@ -67,7 +67,7 @@ export default {
       this.innerFormData = this._.clone(this.formData)
     },
     baseFormSubmit() {
-      this.$refs.baseForm.handleValidateForm()
+      this.$refs.baseForm.handleSubmitForm()
     },
     afterSuccess() {
       this.$emit('get-data')

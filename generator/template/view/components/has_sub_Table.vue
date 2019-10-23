@@ -35,7 +35,7 @@
                          min-width="130"
                          align="center">
           <template slot-scope="scope">
-            <el-button :size="respBtnSize"
+            <el-button size="mini"
                        @click="toEdit(scope.row.id)">
               编辑
             </el-button>

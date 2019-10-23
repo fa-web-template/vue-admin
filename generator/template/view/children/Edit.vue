@@ -8,20 +8,20 @@
                  v-bind="$v_data[module].common"
                  :form-data="data"
                  :module="module"
-                 @get-data="getData" />
+                 @success="success" />
     </v-card>
   </div>
 </template>
 <script>
 const __module = '{{ name }}'
 import BaseEdit from '@/common/components/BaseEdit'
+import loadingMixin from '@/common/mixins/loadingMixin'
 import { mapActions } from 'vuex'
-import loading from '@/common/mixins/loading'
 export default {
   components: {
     BaseEdit
   },
-  mixins: [loading],
+  mixins: [loadingMixin],
   data: () => ({
     module: __module,
     loaded: false,
@@ -43,6 +43,9 @@ export default {
     ...mapActions(__module, ['getData']),
     async initData() {
       this.data = await this.getData(this.id)
+    },
+    success() {
+      this.$router.back()
     }
   }
 }

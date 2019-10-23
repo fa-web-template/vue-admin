@@ -29,7 +29,7 @@ export default {
       type: String,
       default: '添加'
     },
-    btnType: {
+    openBtnType: {
       type: String,
       default: 'primary'
     }
