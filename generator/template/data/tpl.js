@@ -1,40 +1,33 @@
 import rules from '../rules'
 export default {
   common: {
-    item: [
-      {
+    formDesc: {
+      name: {
         label: '名称',
-        key: 'name',
-        type: 'text',
-        rules: [...rules.required({ label: '名称' })]
+        type: 'input'
       }
-    ],
-    data: () => ({
-      name: ''
-    })
+    },
+    rules: {
+      name: [...rules.required({ label: '名称' })]
+    }
   },
 
   search: {
-    item: [
-      {
+    formDesc: {
+      id: {
         label: '编号',
-        key: 'id',
-        type: 'text',
-        meta: {
-          operation: '='
-        }
+        type: 'input'
       },
-      {
+      name: {
         label: '名称',
-        key: 'name',
-        type: 'text',
+        type: 'input',
         meta: {
           operation: 'like'
         }
       }
-    ],
-    data: () => ({
-      id: '',
+    },
+    getFormData: () => ({
+      id: 1,
       name: ''
     })
   }
