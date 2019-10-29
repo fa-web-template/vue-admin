@@ -31,9 +31,9 @@ const getOrderBy = origin => {
   const { order_by, desc } = origin
   return order_by
     ? {
-        order_by,
-        desc
-      }
+      order_by,
+      desc
+    }
     : {}
 }
 

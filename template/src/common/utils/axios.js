@@ -55,8 +55,8 @@ export default {
     const getHeader = () => {
       return needAuth
         ? {
-            Authorization: `Bearer ${store.getters.token}`
-          }
+          Authorization: `Bearer ${store.getters.token}`
+        }
         : {}
     }
 

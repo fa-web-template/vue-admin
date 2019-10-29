@@ -3,7 +3,8 @@
                 :before-open="onBeforeOpen"
                 @submit="baseFormSubmit"
                 @open="init">
-    <ele-form v-bind="formAttrs" />
+    <ele-form v-bind="formAttrs"
+              v-on="$listeners" />
     <el-button slot="footer-middle"
                :size="respBtnSize"
                @click="resetForm">

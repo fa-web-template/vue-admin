@@ -9,7 +9,6 @@ export default [
     meta: {
       // roles: toRoles(['admin']),
       title: '{{ title }}',
-      icon: 'el-icon-ali-icon_yuangongguanli'
     },
     children: [
       {

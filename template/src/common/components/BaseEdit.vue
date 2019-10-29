@@ -1,5 +1,6 @@
 <template>
-  <ele-form v-bind="formAttrs" />
+  <ele-form v-bind="formAttrs"
+            v-on="$listeners" />
 </template>
 
 <script>
